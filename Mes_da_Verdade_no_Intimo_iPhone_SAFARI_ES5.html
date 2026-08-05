@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mês da Verdade">
+    <meta name="format-detection" content="telephone=no">
+    <title>Mês da Verdade no Íntimo</title>
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: #c5a059;
+            --bg-color: #f7f6f2;
+            --card-bg: #ffffff;
+            --text-main: #2c2c2c;
+            --text-muted: #666666;
+            --border-color: #e2dfd5;
+            --success: #2e7d32;
+            --success-bg: #e8f5e9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: var(--bg-color);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            width: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            overscroll-behavior-y: none;
+            -webkit-overflow-scrolling: touch;
+            padding-top: max(16px, env(safe-area-inset-top));
+            padding-right: max(16px, env(safe-area-inset-right));
+            padding-bottom: max(16px, env(safe-area-inset-bottom));
+            padding-left: max(16px, env(safe-area-inset-left));
+        }
+
+        body.modal-open {
+            overflow: hidden;
+            touch-action: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        button:focus-visible {
+            outline: 3px solid rgba(197, 160, 89, 0.5);
+            outline-offset: 3px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            background-color: var(--primary);
+            color: #ffffff;
+            text-align: center;
+            padding: 24px 16px;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .header h3 {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .header h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+
+        .header p.subtitle {
+            font-size: 0.95rem;
+            color: #d1d1d1;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .verse-box {
+            background: rgba(255, 255, 255, 0.07);
+            border-left: 3px solid var(--accent);
+            padding: 10px 14px;
+            margin: 0 auto;
+            max-width: 650px;
+            border-radius: 0 8px 8px 0;
+            text-align: left;
+        }
+
+        .verse-box p {
+            font-size: 0.9rem;
+            color: #f0f0f0;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        .verse-box span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-top: 4px;
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .progress-section {
+            padding: 16px 20px;
+            background: #fff;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #c5a059, #e0c27d);
+            width: 0%;
+            transition: width 0.4s ease;
+            border-radius: 5px;
+        }
+
+        .content-body {
+            padding: 20px;
+        }
+
+        .week-block {
+            margin-bottom: 28px;
+        }
+
+        .week-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .week-title-banner {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 14px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        .day-card {
+            background: #faf9f6;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            color: inherit;
+            font-family: inherit;
+            -webkit-appearance: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .day-card:active {
+            opacity: 0.7;
+            background-color: #f0ede6;
+        }
+
+        .day-card.completed {
+            background-color: var(--success-bg);
+            border-color: #a5d6a7;
+        }
+
+        .day-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            background: #fff;
+            pointer-events: none;
+        }
+
+        .day-card.completed .day-checkbox {
+            background-color: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .day-checkbox::after {
+            content: "✓";
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .day-card.completed .day-checkbox::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .day-info {
+            flex-grow: 1;
+            pointer-events: none;
+        }
+
+        .day-name {
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .day-card.completed .day-name {
+            color: var(--success);
+        }
+
+        .day-ref {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .day-snippet {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        .event-footer {
+            background-color: var(--primary);
+            color: #ffffff;
+            text-align: center;
+            padding: 24px 16px;
+            border-top: 2px solid var(--accent);
+        }
+
+        .event-footer h2 {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        .event-footer p {
+            font-size: 0.9rem;
+            color: #d1d1d1;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-appearance: none;
+            touch-action: manipulation;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-muted);
+            border-color: var(--border-color);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            background: rgba(0,0,0,0.64);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding-top: max(16px, env(safe-area-inset-top));
+            padding-right: max(16px, env(safe-area-inset-right));
+            padding-bottom: max(16px, env(safe-area-inset-bottom));
+            padding-left: max(16px, env(safe-area-inset-left));
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-card {
+            background: #fff;
+            width: 100%;
+            max-width: 500px;
+            max-height: calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 4px 8px;
+            -webkit-appearance: none;
+            touch-action: manipulation;
+        }
+
+        .modal-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .modal-subtitle {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            background: #faf9f6;
+            padding: 14px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-top: max(8px, env(safe-area-inset-top));
+                padding-right: max(8px, env(safe-area-inset-right));
+                padding-bottom: max(8px, env(safe-area-inset-bottom));
+                padding-left: max(8px, env(safe-area-inset-left));
+            }
+
+            .container {
+                border-radius: 12px;
+            }
+
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-info {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .modal-card {
+                padding: 22px 18px 18px;
+            }
+
+            .modal-actions {
+                flex-wrap: wrap;
+            }
+
+            .modal-actions .btn {
+                min-height: 44px;
+            }
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .day-card:hover {
+                border-color: var(--accent);
+                box-shadow: 0 5px 16px rgba(0,0,0,0.08);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+
+        /* Leitura compatível com visualizadores do iPhone:
+           links e abertura funcionam sem JavaScript. */
+        a.day-card {
+            text-decoration: none;
+        }
+
+        .day-info,
+        .day-name,
+        .day-ref,
+        .day-snippet {
+            display: block;
+        }
+
+        .reading-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            padding-top: max(16px, env(safe-area-inset-top));
+            padding-right: max(16px, env(safe-area-inset-right));
+            padding-bottom: max(16px, env(safe-area-inset-bottom));
+            padding-left: max(16px, env(safe-area-inset-left));
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .reading-overlay:target {
+            display: flex;
+        }
+
+        .reading-backdrop {
+            position: fixed;
+            inset: 0;
+            display: block;
+            background: rgba(0, 0, 0, 0.68);
+            -webkit-backdrop-filter: blur(3px);
+            backdrop-filter: blur(3px);
+        }
+
+        .reading-card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 500px;
+            max-height: calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 24px;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.28);
+        }
+
+        .reading-close {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        @supports not (height: 100dvh) {
+            .reading-overlay {
+                height: 100vh;
+            }
+
+            .reading-card {
+                max-height: calc(100vh - 32px);
+            }
+        }
+
+
+        .js-warning {
+            position: sticky;
+            top: 0;
+            z-index: 200000;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 12px;
+            padding: 12px 14px;
+            border: 1px solid #d89b00;
+            border-radius: 10px;
+            background: #fff4cc;
+            color: #5b4300;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .reading-toggle-btn.is-completed {
+            background: #d32f2f !important;
+            border-color: #d32f2f !important;
+            color: #fff !important;
+        }
+
+    </style>
+</head>
+<body>
+
+    <noscript>
+        <div class="js-warning">
+            O leitor do iPhone bloqueou o JavaScript. As leituras podem ser abertas,
+            mas marcar e salvar o progresso exige abrir esta página no Safari por
+            um endereço HTTPS.
+        </div>
+    </noscript>
+
+
+    <div class="container">
+        <div class="header">
+            <h3>Mês da</h3>
+            <h1>Verdade no Íntimo</h1>
+            <p class="subtitle">Nas próximas semanas, dedique tempo para ler, orar e meditar.</p>
+            
+            <div class="verse-box">
+                <p>&ldquo;Eis que amas a verdade no íntimo, e no oculto me fazes conhecer a sabedoria.&rdquo;</p>
+                <span>Salmos 51:6</span>
+            </div>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-info">
+                <span id="progress-text">Progresso: 0 de 35 dias (0%)</span>
+                <span id="progress-status" style="color: var(--accent);">Vamos começar!</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
+        <div class="content-body">
+            <section class="week-block" aria-labelledby="week-title-1">
+                <h2 class="week-title-banner" id="week-title-1">1ª Semana (02/08 a 08/08)</h2>
+                <div class="days-grid">
+                    <a class="day-card" data-w="1" data-d="0" href="#leitura-w1-d0" aria-label="Abrir leitura de Domingo 02/08: Salmos 51:6-7">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Domingo 02/08</span>
+                            <span class="day-ref">Salmos 51:6-7</span>
+                            <span class="day-snippet">Sinceridade e pureza diante de Deus.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="1" data-d="1" href="#leitura-w1-d1" aria-label="Abrir leitura de Segunda 03/08: Mateus 5:8-9">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Segunda 03/08</span>
+                            <span class="day-ref">Mateus 5:8-9</span>
+                            <span class="day-snippet">Os limpos de coração.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="1" data-d="2" href="#leitura-w1-d2" aria-label="Abrir leitura de Terça 04/08: Provérbios 3:3-4">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Terça 04/08</span>
+                            <span class="day-ref">Provérbios 3:3-4</span>
+                            <span class="day-snippet">Fidelidade e benignidade.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="1" data-d="3" href="#leitura-w1-d3" aria-label="Abrir leitura de Quarta 05/08: Romanos 12:1-2">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Quarta 05/08</span>
+                            <span class="day-ref">Romanos 12:1-2</span>
+                            <span class="day-snippet">Culto racional e transformação.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="1" data-d="4" href="#leitura-w1-d4" aria-label="Abrir leitura de Quinta 06/08: Jó 27:5-6">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Quinta 06/08</span>
+                            <span class="day-ref">Jó 27:5-6</span>
+                            <span class="day-snippet">Integridade inegociável.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="1" data-d="5" href="#leitura-w1-d5" aria-label="Abrir leitura de Sexta 07/08: Efésios 4:24-25">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Sexta 07/08</span>
+                            <span class="day-ref">Efésios 4:24-25</span>
+                            <span class="day-snippet">O novo homem em justiça e verdade.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="1" data-d="6" href="#leitura-w1-d6" aria-label="Abrir leitura de Sábado 08/08: 1 Samuel 2:29-30">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Sábado 08/08</span>
+                            <span class="day-ref">1 Samuel 2:29-30</span>
+                            <span class="day-snippet">Honrando a Deus com retidão.</span>
+                        </span>
+                    </a>
+                </div>
+            </section>
+            <section class="week-block" aria-labelledby="week-title-2">
+                <h2 class="week-title-banner" id="week-title-2">2ª Semana (09/08 a 15/08)</h2>
+                <div class="days-grid">
+                    <a class="day-card" data-w="2" data-d="0" href="#leitura-w2-d0" aria-label="Abrir leitura de Domingo 09/08: Filipenses 3:7-8">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Domingo 09/08</span>
+                            <span class="day-ref">Filipenses 3:7-8</span>
+                            <span class="day-snippet">Tudo considerado perda por Cristo.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="2" data-d="1" href="#leitura-w2-d1" aria-label="Abrir leitura de Segunda 10/08: Eclesiastes 9:7-8">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Segunda 10/08</span>
+                            <span class="day-ref">Eclesiastes 9:7-8</span>
+                            <span class="day-snippet">Alegria e vestes brancas.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="2" data-d="2" href="#leitura-w2-d2" aria-label="Abrir leitura de Terça 11/08: 1 João 3:16-17">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Terça 11/08</span>
+                            <span class="day-ref">1 João 3:16-17</span>
+                            <span class="day-snippet">Amor em obras e em verdade.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="2" data-d="3" href="#leitura-w2-d3" aria-label="Abrir leitura de Quarta 12/08: Josué 24:14-15">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Quarta 12/08</span>
+                            <span class="day-ref">Josué 24:14-15</span>
+                            <span class="day-snippet">Servir ao Senhor com sinceridade.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="2" data-d="4" href="#leitura-w2-d4" aria-label="Abrir leitura de Quinta 13/08: Atos 24:15-16">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Quinta 13/08</span>
+                            <span class="day-ref">Atos 24:15-16</span>
+                            <span class="day-snippet">Consciência pura diante de Deus.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="2" data-d="5" href="#leitura-w2-d5" aria-label="Abrir leitura de Sexta 14/08: 1 Crônicas 29:16-17">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Sexta 14/08</span>
+                            <span class="day-ref">1 Crônicas 29:16-17</span>
+                            <span class="day-snippet">Deus prova os corações.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="2" data-d="6" href="#leitura-w2-d6" aria-label="Abrir leitura de Sábado 15/08: Apocalipse 3:4-5">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Sábado 15/08</span>
+                            <span class="day-ref">Apocalipse 3:4-5</span>
+                            <span class="day-snippet">Andar de branco com o Senhor.</span>
+                        </span>
+                    </a>
+                </div>
+            </section>
+            <section class="week-block" aria-labelledby="week-title-3">
+                <h2 class="week-title-banner" id="week-title-3">3ª Semana (16/08 a 22/08)</h2>
+                <div class="days-grid">
+                    <a class="day-card" data-w="3" data-d="0" href="#leitura-w3-d0" aria-label="Abrir leitura de Domingo 16/08: Salmos 24:3-5">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Domingo 16/08</span>
+                            <span class="day-ref">Salmos 24:3-5</span>
+                            <span class="day-snippet">Quem subirá ao monte do Senhor?</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="3" data-d="1" href="#leitura-w3-d1" aria-label="Abrir leitura de Segunda 17/08: Tiago 4:15-17">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Segunda 17/08</span>
+                            <span class="day-ref">Tiago 4:15-17</span>
+                            <span class="day-snippet">Retidão e o bem que se deve fazer.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="3" data-d="2" href="#leitura-w3-d2" aria-label="Abrir leitura de Terça 18/08: Zacarias 8:16-17">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Terça 18/08</span>
+                            <span class="day-ref">Zacarias 8:16-17</span>
+                            <span class="day-snippet">A verdade e a justiça nos portões.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="3" data-d="3" href="#leitura-w3-d3" aria-label="Abrir leitura de Quarta 19/08: Apocalipse 4:10-11">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Quarta 19/08</span>
+                            <span class="day-ref">Apocalipse 4:10-11</span>
+                            <span class="day-snippet">Adoração verdadeira ao Criador.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="3" data-d="4" href="#leitura-w3-d4" aria-label="Abrir leitura de Quinta 20/08: Gênesis 22:15-17">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Quinta 20/08</span>
+                            <span class="day-ref">Gênesis 22:15-17</span>
+                            <span class="day-snippet">A obediência provada.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="3" data-d="5" href="#leitura-w3-d5" aria-label="Abrir leitura de Sexta 21/08: 2 Coríntios 12:14-15">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Sexta 21/08</span>
+                            <span class="day-ref">2 Coríntios 12:14-15</span>
+                            <span class="day-snippet">Sinceridade no ministério e no amor.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="3" data-d="6" href="#leitura-w3-d6" aria-label="Abrir leitura de Sábado 22/08: Salmos 145:18-19">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Sábado 22/08</span>
+                            <span class="day-ref">Salmos 145:18-19</span>
+                            <span class="day-snippet">Perto dos que o invocam em verdade.</span>
+                        </span>
+                    </a>
+                </div>
+            </section>
+            <section class="week-block" aria-labelledby="week-title-4">
+                <h2 class="week-title-banner" id="week-title-4">4ª Semana (23/08 a 29/08)</h2>
+                <div class="days-grid">
+                    <a class="day-card" data-w="4" data-d="0" href="#leitura-w4-d0" aria-label="Abrir leitura de Domingo 23/08: Hebreus 10:22-23">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Domingo 23/08</span>
+                            <span class="day-ref">Hebreus 10:22-23</span>
+                            <span class="day-snippet">Aproximemo-nos com sincero coração.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="4" data-d="1" href="#leitura-w4-d1" aria-label="Abrir leitura de Segunda 24/08: Salmos 26:1-3">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Segunda 24/08</span>
+                            <span class="day-ref">Salmos 26:1-3</span>
+                            <span class="day-snippet">Julga-me, Senhor, segundo a integridade.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="4" data-d="2" href="#leitura-w4-d2" aria-label="Abrir leitura de Terça 25/08: 1 Timóteo 1:5-6">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Terça 25/08</span>
+                            <span class="day-ref">1 Timóteo 1:5-6</span>
+                            <span class="day-snippet">O alvo do mandamento é o amor.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="4" data-d="3" href="#leitura-w4-d3" aria-label="Abrir leitura de Quarta 26/08: Isaías 1:16-18">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Quarta 26/08</span>
+                            <span class="day-ref">Isaías 1:16-18</span>
+                            <span class="day-snippet">Lavai-vos e purificai-vos.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="4" data-d="4" href="#leitura-w4-d4" aria-label="Abrir leitura de Quinta 27/08: Marcos 12:43-44">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Quinta 27/08</span>
+                            <span class="day-ref">Marcos 12:43-44</span>
+                            <span class="day-snippet">A oferta sincera da viúva pobre.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="4" data-d="5" href="#leitura-w4-d5" aria-label="Abrir leitura de Sexta 28/08: Ezequiel 22:30-31">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Sexta 28/08</span>
+                            <span class="day-ref">Ezequiel 22:30-31</span>
+                            <span class="day-snippet">Procurando um homem que repare a brecha.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="4" data-d="6" href="#leitura-w4-d6" aria-label="Abrir leitura de Sábado 29/08: 1 Pedro 2:15-16">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Sábado 29/08</span>
+                            <span class="day-ref">1 Pedro 2:15-16</span>
+                            <span class="day-snippet">Vivendo como servos de Deus.</span>
+                        </span>
+                    </a>
+                </div>
+            </section>
+            <section class="week-block" aria-labelledby="week-title-5">
+                <h2 class="week-title-banner" id="week-title-5">5ª Semana (30/08 a 05/09)</h2>
+                <div class="days-grid">
+                    <a class="day-card" data-w="5" data-d="0" href="#leitura-w5-d0" aria-label="Abrir leitura de Domingo 30/08: Rute 1:16-17">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Domingo 30/08</span>
+                            <span class="day-ref">Rute 1:16-17</span>
+                            <span class="day-snippet">Lealdade e compromisso inabalável.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="5" data-d="1" href="#leitura-w5-d1" aria-label="Abrir leitura de Segunda 31/08: Lucas 14:32-33">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Segunda 31/08</span>
+                            <span class="day-ref">Lucas 14:32-33</span>
+                            <span class="day-snippet">Renunciando a tudo pelo Mestre.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="5" data-d="2" href="#leitura-w5-d2" aria-label="Abrir leitura de Terça 01/09: Salmos 15:1-3">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Terça 01/09</span>
+                            <span class="day-ref">Salmos 15:1-3</span>
+                            <span class="day-snippet">Aquele que habita no tabernáculo.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="5" data-d="3" href="#leitura-w5-d3" aria-label="Abrir leitura de Quarta 02/09: 1 Coríntios 10:31-33">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Quarta 02/09</span>
+                            <span class="day-ref">1 Coríntios 10:31-33</span>
+                            <span class="day-snippet">Tudo para a glória de Deus.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="5" data-d="4" href="#leitura-w5-d4" aria-label="Abrir leitura de Quinta 03/09: Provérbios 4:23-24">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Quinta 03/09</span>
+                            <span class="day-ref">Provérbios 4:23-24</span>
+                            <span class="day-snippet">Guardando o coração acima de tudo.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="5" data-d="5" href="#leitura-w5-d5" aria-label="Abrir leitura de Sexta 04/09: Apocalipse 7:13-14">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Sexta 04/09</span>
+                            <span class="day-ref">Apocalipse 7:13-14</span>
+                            <span class="day-snippet">Os que lavaram suas vestes no Cordeiro.</span>
+                        </span>
+                    </a>
+                    <a class="day-card" data-w="5" data-d="6" href="#leitura-w5-d6" aria-label="Abrir leitura de Sábado 05/09: 2 Reis 20:2-3">
+                        <span class="day-checkbox" aria-hidden="true"></span>
+                        <span class="day-info">
+                            <span class="day-name">Sábado 05/09</span>
+                            <span class="day-ref">2 Reis 20:2-3</span>
+                            <span class="day-snippet">Andando perante Deus com verdade.</span>
+                        </span>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <div class="event-footer">
+            <h2>Traga esta folha no dia 5 de setembro, às 18h</h2>
+            <p>Direto do Templo de Salomão, com transmissão para todo o Brasil.</p>
+        </div>
+    </div>
+
+    <section class="reading-overlay" id="leitura-w1-d0" role="dialog" aria-modal="true" aria-labelledby="leitura-w1-d0-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w1-d0-title">Domingo 02/08</h2>
+            <div class="modal-subtitle">Salmos 51:6-7 — Sinceridade e pureza diante de Deus.</div>
+            <div class="modal-text">“Eis que amas a verdade no íntimo, e no oculto me fazes conhecer a sabedoria. Purifica-me com hissopo, e ficarei puro; lava-me, e serei mais alvo do que a neve.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="1" data-d="0">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w1-d1" role="dialog" aria-modal="true" aria-labelledby="leitura-w1-d1-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w1-d1-title">Segunda 03/08</h2>
+            <div class="modal-subtitle">Mateus 5:8-9 — Os limpos de coração.</div>
+            <div class="modal-text">“Bem-aventurados os limpos de coração, porque eles verão a Deus; bem-aventurados os pacificadores, porque serão chamados filhos de Deus.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="1" data-d="1">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w1-d2" role="dialog" aria-modal="true" aria-labelledby="leitura-w1-d2-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w1-d2-title">Terça 04/08</h2>
+            <div class="modal-subtitle">Provérbios 3:3-4 — Fidelidade e benignidade.</div>
+            <div class="modal-text">“Não se apartem de ti a benignidade e a fidelidade; ata-as ao teu pescoço; escreve-as na tábua do teu coração. E acharás graça e boa compreensão diante de Deus e dos homens.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="1" data-d="2">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w1-d3" role="dialog" aria-modal="true" aria-labelledby="leitura-w1-d3-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w1-d3-title">Quarta 05/08</h2>
+            <div class="modal-subtitle">Romanos 12:1-2 — Culto racional e transformação.</div>
+            <div class="modal-text">“Rogo-vos, pois, irmãos, pelas misericórdias de Deus, que apresenteis os vossos corpos por sacrifício vivo, santo e agradável a Deus, que é o vosso culto racional. E não vos conformeis com este mundo, mas transformai-vos pela renovação da vossa mente...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="1" data-d="3">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w1-d4" role="dialog" aria-modal="true" aria-labelledby="leitura-w1-d4-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w1-d4-title">Quinta 06/08</h2>
+            <div class="modal-subtitle">Jó 27:5-6 — Integridade inegociável.</div>
+            <div class="modal-text">“Longe de mim que eu vos dê razão; até que eu morra, nunca apartarei de mim a minha integridade. A minha justiça retens e não a largarei; o meu coração não reprova nenhum dos meus dias.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="1" data-d="4">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w1-d5" role="dialog" aria-modal="true" aria-labelledby="leitura-w1-d5-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w1-d5-title">Sexta 07/08</h2>
+            <div class="modal-subtitle">Efésios 4:24-25 — O novo homem em justiça e verdade.</div>
+            <div class="modal-text">“E vos revistais do novo homem, criado segundo Deus, em justiça e retidão procedentes da verdade. Por isso, deixando a mentira, fale cada um a verdade com o seu próximo...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="1" data-d="5">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w1-d6" role="dialog" aria-modal="true" aria-labelledby="leitura-w1-d6-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w1-d6-title">Sábado 08/08</h2>
+            <div class="modal-subtitle">1 Samuel 2:29-30 — Honrando a Deus com retidão.</div>
+            <div class="modal-text">“Por que calqueis aos pés o meu sacrifício e a minha oferta... Honrarei aos que me honram, porém os que me desprezam serão desestimados.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="1" data-d="6">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w2-d0" role="dialog" aria-modal="true" aria-labelledby="leitura-w2-d0-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w2-d0-title">Domingo 09/08</h2>
+            <div class="modal-subtitle">Filipenses 3:7-8 — Tudo considerado perda por Cristo.</div>
+            <div class="modal-text">“Mas o que para mim era lucro, isto considerei perda por causa de Cristo. Sim, deveras considero tudo como perda, por causa da sublimidade do conhecimento de Cristo Jesus, meu Senhor...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="2" data-d="0">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w2-d1" role="dialog" aria-modal="true" aria-labelledby="leitura-w2-d1-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w2-d1-title">Segunda 10/08</h2>
+            <div class="modal-subtitle">Eclesiastes 9:7-8 — Alegria e vestes brancas.</div>
+            <div class="modal-text">“Vai, pois, come com alegria o teu pão e bebe o teu vinho com coração contente, pois Deus já se agrada das tuas obras. Em todo tempo sejam alvas as tuas vestes, e nunca falte o óleo sobre a tua cabeça.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="2" data-d="1">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w2-d2" role="dialog" aria-modal="true" aria-labelledby="leitura-w2-d2-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w2-d2-title">Terça 11/08</h2>
+            <div class="modal-subtitle">1 João 3:16-17 — Amor em obras e em verdade.</div>
+            <div class="modal-text">“Nisto conhecemos o amor: que Cristo deu a sua vida por nós; e devemos dar a vida pelos irmãos. Ora, quem tiver bens do mundo, e vir a seu irmão abastado de necessidade, e lhe fechar o seu coração, como habita nele o amor de Deus?”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="2" data-d="2">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w2-d3" role="dialog" aria-modal="true" aria-labelledby="leitura-w2-d3-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w2-d3-title">Quarta 12/08</h2>
+            <div class="modal-subtitle">Josué 24:14-15 — Servir ao Senhor com sinceridade.</div>
+            <div class="modal-text">“Agora, pois, temei ao Senhor, e servi-o com sinceridade e com verdade; deitai fora os deuses a quem serviram vossos pais... porém eu e a minha casa serviremos ao Senhor.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="2" data-d="3">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w2-d4" role="dialog" aria-modal="true" aria-labelledby="leitura-w2-d4-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w2-d4-title">Quinta 13/08</h2>
+            <div class="modal-subtitle">Atos 24:15-16 — Consciência pura diante de Deus.</div>
+            <div class="modal-text">“Tendo esperança em Deus, como estes mesmos também esperam, de que há de haver ressurreição dos mortos, tanto dos justos como dos injustos. Por isso, também me esforço por ter sempre consciência pura diante de Deus e dos homens.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="2" data-d="4">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w2-d5" role="dialog" aria-modal="true" aria-labelledby="leitura-w2-d5-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w2-d5-title">Sexta 14/08</h2>
+            <div class="modal-subtitle">1 Crônicas 29:16-17 — Deus prova os corações.</div>
+            <div class="modal-text">“Senhor, Deus de nossos pais... Bem sei, meu Deus, que tu provas os corações e que te agradas da sinceridade. Eu, na sinceridade de meu coração, voluntariamente dei todas estas coisas...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="2" data-d="5">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w2-d6" role="dialog" aria-modal="true" aria-labelledby="leitura-w2-d6-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w2-d6-title">Sábado 15/08</h2>
+            <div class="modal-subtitle">Apocalipse 3:4-5 — Andar de branco com o Senhor.</div>
+            <div class="modal-text">“Contudo, tens em Sardes algumas pessoas que não contaminaram suas vestes e comigo andarão de branco, porquanto são dignas. O vencedor assim será vestido de vestes brancas...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="2" data-d="6">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w3-d0" role="dialog" aria-modal="true" aria-labelledby="leitura-w3-d0-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w3-d0-title">Domingo 16/08</h2>
+            <div class="modal-subtitle">Salmos 24:3-5 — Quem subirá ao monte do Senhor?</div>
+            <div class="modal-text">“Quem subirá ao monte do Senhor? Ou quem estará no seu lugar santo? Aquele que é limpo de mãos e puro de coração, que não entrega a sua alma à falsidade, nem jura enganosamente.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="3" data-d="0">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w3-d1" role="dialog" aria-modal="true" aria-labelledby="leitura-w3-d1-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w3-d1-title">Segunda 17/08</h2>
+            <div class="modal-subtitle">Tiago 4:15-17 — Retidão e o bem que se deve fazer.</div>
+            <div class="modal-text">“Em lugar disso, devíeis dizer: Se o Senhor der, e se quisermos, viveremos e faremos isto ou aquilo... Aquele, pois, que sabe fazer o bem e o não faz, comete pecado.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="3" data-d="1">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w3-d2" role="dialog" aria-modal="true" aria-labelledby="leitura-w3-d2-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w3-d2-title">Terça 18/08</h2>
+            <div class="modal-subtitle">Zacarias 8:16-17 — A verdade e a justiça nos portões.</div>
+            <div class="modal-text">“Estas são as coisas que vós fareis: Falai a verdade cada um com o seu próximo; executai juízo de verdade e de paz nas vossas portas. E nenhum de vós maquina o mal contra o seu próximo em vosso coração...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="3" data-d="2">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w3-d3" role="dialog" aria-modal="true" aria-labelledby="leitura-w3-d3-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w3-d3-title">Quarta 19/08</h2>
+            <div class="modal-subtitle">Apocalipse 4:10-11 — Adoração verdadeira ao Criador.</div>
+            <div class="modal-text">“Os vinte e quatro anciãos prostravam-se diante do que estava assentado sobre o trono, e adoravam o que vive para todo o sempre... Digno és, Senhor e Deus nosso, de receber a glória, a honra e o poder...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="3" data-d="3">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w3-d4" role="dialog" aria-modal="true" aria-labelledby="leitura-w3-d4-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w3-d4-title">Quinta 20/08</h2>
+            <div class="modal-subtitle">Gênesis 22:15-17 — A obediência provada.</div>
+            <div class="modal-text">“Então o anjo do Senhor chamou a Abraão pela segunda vez desde os céus, e disse: Porquanto fizeste isto, e não me negaste o teu filho, o teu único filho, de certo te abençoarei grandemente...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="3" data-d="4">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w3-d5" role="dialog" aria-modal="true" aria-labelledby="leitura-w3-d5-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w3-d5-title">Sexta 21/08</h2>
+            <div class="modal-subtitle">2 Coríntios 12:14-15 — Sinceridade no ministério e no amor.</div>
+            <div class="modal-text">“Eis que estou pronto para ir ter convosco pela terceira vez e não vos serei pesado, pois não busco os vossos bens, mas a vós mesmos... De boa mente gastarei e me deixarei gastar pelas vossas almas...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="3" data-d="5">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w3-d6" role="dialog" aria-modal="true" aria-labelledby="leitura-w3-d6-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w3-d6-title">Sábado 22/08</h2>
+            <div class="modal-subtitle">Salmos 145:18-19 — Perto dos que o invocam em verdade.</div>
+            <div class="modal-text">“Perto está o Senhor de todos os que o invocam, de todos os que o invocam em verdade. Ele acode à vontade dos que o temem; ouve o seu clamor, e os salva.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="3" data-d="6">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w4-d0" role="dialog" aria-modal="true" aria-labelledby="leitura-w4-d0-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w4-d0-title">Domingo 23/08</h2>
+            <div class="modal-subtitle">Hebreus 10:22-23 — Aproximemo-nos com sincero coração.</div>
+            <div class="modal-text">“Aproximemo-nos, com sincero coração, em plena certeza de fé, tendo os corações purificados da má consciência, e o corpo lavado com água pura. Retenhamos firme a confissão da nossa esperança...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="4" data-d="0">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w4-d1" role="dialog" aria-modal="true" aria-labelledby="leitura-w4-d1-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w4-d1-title">Segunda 24/08</h2>
+            <div class="modal-subtitle">Salmos 26:1-3 — Julga-me, Senhor, segundo a integridade.</div>
+            <div class="modal-text">“Faze-me justiça, Senhor, pois tenho andado na minha integridade; tenho confiado no Senhor sem vacilar. Examina-me, Senhor, e prova-me; sonda-me os rins e o meu coração. Porque a tua benignidade está diante dos meus olhos...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="4" data-d="1">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w4-d2" role="dialog" aria-modal="true" aria-labelledby="leitura-w4-d2-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w4-d2-title">Terça 25/08</h2>
+            <div class="modal-subtitle">1 Timóteo 1:5-6 — O alvo do mandamento é o amor.</div>
+            <div class="modal-text">“Ora, o fim do mandamento é o amor que procede de um coração puro, e de uma boa consciência, e de uma fé não fingida. Desviando-se alguns destas coisas, se entregaram a conversas vãs...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="4" data-d="2">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w4-d3" role="dialog" aria-modal="true" aria-labelledby="leitura-w4-d3-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w4-d3-title">Quarta 26/08</h2>
+            <div class="modal-subtitle">Isaías 1:16-18 — Lavai-vos e purificai-vos.</div>
+            <div class="modal-text">“Lavai-vos, purificai-vos, tirai a maldade de vossos atos de diante dos meus olhos; cessai de fazer o mal. Aprendei a fazer o bem; busquei o que é justo... Ainda que os vossos pecados sejam como a escarlata, eles se tornarão brancos como a neve...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="4" data-d="3">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w4-d4" role="dialog" aria-modal="true" aria-labelledby="leitura-w4-d4-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w4-d4-title">Quinta 27/08</h2>
+            <div class="modal-subtitle">Marcos 12:43-44 — A oferta sincera da viúva pobre.</div>
+            <div class="modal-text">“E, chamando os seus discípulos, disse-lhes: Em verdade vos digo que esta viúva pobre deu mais do que todos os que deitaram na arca... porque todos deram do que lhes sobrava; esta, porém, da sua pobreza deu tudo quanto tinha, todo o seu sustento.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="4" data-d="4">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w4-d5" role="dialog" aria-modal="true" aria-labelledby="leitura-w4-d5-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w4-d5-title">Sexta 28/08</h2>
+            <div class="modal-subtitle">Ezequiel 22:30-31 — Procurando um homem que repare a brecha.</div>
+            <div class="modal-text">“E busquei entre eles um homem que estivesse a brecha e se pudesse pôr na brecha perante mim por esta terra, para que eu não a destruísse; porém a ninguém achei...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="4" data-d="5">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w4-d6" role="dialog" aria-modal="true" aria-labelledby="leitura-w4-d6-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w4-d6-title">Sábado 29/08</h2>
+            <div class="modal-subtitle">1 Pedro 2:15-16 — Vivendo como servos de Deus.</div>
+            <div class="modal-text">“Porque assim é a vontade de Deus, que, fazendo o bem, tapeis a boca da ignorância dos homens loucos; como livres, e não tendo a liberdade por cobertura da malícia, mas como servos de Deus.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="4" data-d="6">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w5-d0" role="dialog" aria-modal="true" aria-labelledby="leitura-w5-d0-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w5-d0-title">Domingo 30/08</h2>
+            <div class="modal-subtitle">Rute 1:16-17 — Lealdade e compromisso inabalável.</div>
+            <div class="modal-text">“Disse, porém, Rute: Não me instes para que te deixe, e me obrigue a deixar-te; porque aonde quer que fores, irei eu, e onde quer que pousares, ali pousarei; o teu povo será o meu povo, e o teu Deus será o meu Deus.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="5" data-d="0">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w5-d1" role="dialog" aria-modal="true" aria-labelledby="leitura-w5-d1-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w5-d1-title">Segunda 31/08</h2>
+            <div class="modal-subtitle">Lucas 14:32-33 — Renunciando a tudo pelo Mestre.</div>
+            <div class="modal-text">“De outra maneira, estando ainda longe, envia embaixadores, e pede condições de paz. Assim, pois, qualquer de vós que não renuncia a tudo quanto tem, não pode ser meu discípulo.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="5" data-d="1">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w5-d2" role="dialog" aria-modal="true" aria-labelledby="leitura-w5-d2-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w5-d2-title">Terça 01/09</h2>
+            <div class="modal-subtitle">Salmos 15:1-3 — Aquele que habita no tabernáculo.</div>
+            <div class="modal-text">“Senhor, quem habitará no teu tabernáculo? Quem morará no teu santo monte? Aquele que anda em integridade, e pratica a justiça, e fala a verdade no seu coração. Aquele que não difama com a sua língua...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="5" data-d="2">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w5-d3" role="dialog" aria-modal="true" aria-labelledby="leitura-w5-d3-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w5-d3-title">Quarta 02/09</h2>
+            <div class="modal-subtitle">1 Coríntios 10:31-33 — Tudo para a glória de Deus.</div>
+            <div class="modal-text">“Portanto, quer comais quer bebais, ou façais outra qualquer coisa, fazei tudo para a glória de Deus. Não sede motivo de escândalo nem aos judeus, nem aos gregos, nem à igreja de Deus...”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="5" data-d="3">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w5-d4" role="dialog" aria-modal="true" aria-labelledby="leitura-w5-d4-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w5-d4-title">Quinta 03/09</h2>
+            <div class="modal-subtitle">Provérbios 4:23-24 — Guardando o coração acima de tudo.</div>
+            <div class="modal-text">“Sobre tudo o que se deve guardar, guarda o teu coração, porque dele procedem as fontes da vida. Desvia de ti a falsidade, e afasta de ti a perversidade dos lábios.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="5" data-d="4">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w5-d5" role="dialog" aria-modal="true" aria-labelledby="leitura-w5-d5-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w5-d5-title">Sexta 04/09</h2>
+            <div class="modal-subtitle">Apocalipse 7:13-14 — Os que lavaram suas vestes no Cordeiro.</div>
+            <div class="modal-text">“E um dos anciãos falou, dizendo-me: Estes que estão vestidos de vestes brancas, quem são, e de onde vieram? E eu disse-lhe: Senhor, tu sabes. E ele disse-me: Estes são os que vêm da grande tribulação, e lavaram as suas vestes e as branquearam no sangue do Cordeiro.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="5" data-d="5">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <section class="reading-overlay" id="leitura-w5-d6" role="dialog" aria-modal="true" aria-labelledby="leitura-w5-d6-title">
+        <a class="reading-backdrop" href="#" aria-label="Fechar leitura"></a>
+        <article class="reading-card">
+            <a class="reading-close" href="#" aria-label="Fechar leitura">×</a>
+            <h2 class="modal-title" id="leitura-w5-d6-title">Sábado 05/09</h2>
+            <div class="modal-subtitle">2 Reis 20:2-3 — Andando perante Deus com verdade.</div>
+            <div class="modal-text">“Então virou o rosto para a parede, e orou ao Senhor, dizendo: Lembra-te agora, ó Senhor, pido-te, como tenho andado perante ti em verdade, e com coração perfeito, e tenho feito o que era bom aos teus olhos. E Ezequias chorou muito.”</div>
+            <div class="modal-actions">
+                <a class="btn btn-outline link-button" href="#">Fechar</a>
+                <button type="button" class="btn reading-toggle-btn" data-w="5" data-d="6">
+                    Marcar como Concluído
+                </button>
+            </div>
+        </article>
+    </section>
+
+    <script>
+    (function () {
+        "use strict";
+
+        var STORAGE_KEY = "verdadeNoIntimo_completed";
+        var TOTAL_DAYS = 35;
+        var completedDays = {};
+
+        function loadProgress() {
+            var saved;
+            try {
+                saved = window.localStorage.getItem(STORAGE_KEY);
+                completedDays = saved ? JSON.parse(saved) : {};
+            } catch (error) {
+                completedDays = {};
+            }
+        }
+
+        function saveProgress() {
+            try {
+                window.localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(completedDays)
+                );
+            } catch (error) {
+                /* Mantém o estado durante a sessão mesmo sem armazenamento. */
+            }
+        }
+
+        function getKey(week, day) {
+            return "w" + week + "_d" + day;
+        }
+
+        function hasClass(element, className) {
+            return (" " + element.className + " ").indexOf(" " + className + " ") !== -1;
+        }
+
+        function addClass(element, className) {
+            if (!hasClass(element, className)) {
+                element.className += " " + className;
+            }
+        }
+
+        function removeClass(element, className) {
+            var pattern = new RegExp("(^|\\\\s)" + className + "(?=\\\\s|$)", "g");
+            element.className = element.className.replace(pattern, " ").replace(/\\s+/g, " ").replace(/^\\s|\\s$/g, "");
+        }
+
+        function setCompletedClass(element, completed) {
+            if (completed) {
+                addClass(element, "completed");
+            } else {
+                removeClass(element, "completed");
+            }
+        }
+
+        function setButtonCompletedClass(element, completed) {
+            if (completed) {
+                addClass(element, "is-completed");
+            } else {
+                removeClass(element, "is-completed");
+            }
+        }
+
+        function updateCards() {
+            var cards = document.getElementsByClassName("day-card");
+            var i, card, key, week, day;
+
+            for (i = 0; i < cards.length; i += 1) {
+                card = cards[i];
+                week = card.getAttribute("data-w");
+                day = card.getAttribute("data-d");
+                key = getKey(week, day);
+                setCompletedClass(card, !!completedDays[key]);
+            }
+        }
+
+        function updateReadingButtons() {
+            var buttons = document.getElementsByClassName("reading-toggle-btn");
+            var i, button, key, week, day, completed;
+
+            for (i = 0; i < buttons.length; i += 1) {
+                button = buttons[i];
+                week = button.getAttribute("data-w");
+                day = button.getAttribute("data-d");
+                key = getKey(week, day);
+                completed = !!completedDays[key];
+
+                button.innerHTML = completed
+                    ? "Desmarcar Dia"
+                    : "Marcar como Concluído";
+
+                button.setAttribute("aria-pressed", completed ? "true" : "false");
+                setButtonCompletedClass(button, completed);
+            }
+        }
+
+        function updateProgress() {
+            var count = 0;
+            var key;
+            var percentage;
+            var progressText;
+            var progressFill;
+            var statusElement;
+
+            for (key in completedDays) {
+                if (completedDays.hasOwnProperty(key) && completedDays[key]) {
+                    count += 1;
+                }
+            }
+
+            percentage = Math.round((count / TOTAL_DAYS) * 100);
+            progressText = document.getElementById("progress-text");
+            progressFill = document.getElementById("progress-fill");
+            statusElement = document.getElementById("progress-status");
+
+            if (progressText) {
+                progressText.innerHTML =
+                    "Progresso: " + count + " de " + TOTAL_DAYS +
+                    " dias (" + percentage + "%)";
+            }
+
+            if (progressFill) {
+                progressFill.style.width = percentage + "%";
+            }
+
+            if (statusElement) {
+                if (percentage === 0) {
+                    statusElement.innerHTML = "Vamos começar!";
+                } else if (percentage < 25) {
+                    statusElement.innerHTML = "Bom começo!";
+                } else if (percentage < 50) {
+                    statusElement.innerHTML = "Firmando no propósito!";
+                } else if (percentage < 75) {
+                    statusElement.innerHTML = "Metade da jornada vencida!";
+                } else if (percentage < 100) {
+                    statusElement.innerHTML = "Quase lá para o grande dia!";
+                } else {
+                    statusElement.innerHTML = "Parabéns! Mês concluído!";
+                }
+            }
+        }
+
+        function refreshInterface() {
+            updateCards();
+            updateReadingButtons();
+            updateProgress();
+        }
+
+        function toggleDay(week, day) {
+            var key = getKey(week, day);
+
+            if (completedDays[key]) {
+                delete completedDays[key];
+            } else {
+                completedDays[key] = true;
+            }
+
+            saveProgress();
+            refreshInterface();
+        }
+
+        function findToggleButton(target) {
+            while (target && target !== document) {
+                if (hasClass(target, "reading-toggle-btn")) {
+                    return target;
+                }
+                target = target.parentNode;
+            }
+            return null;
+        }
+
+        function handleClick(event) {
+            var button = findToggleButton(event.target || event.srcElement);
+            var week;
+            var day;
+
+            if (!button) {
+                return;
+            }
+
+            if (event.preventDefault) {
+                event.preventDefault();
+            } else {
+                event.returnValue = false;
+            }
+
+            week = parseInt(button.getAttribute("data-w"), 10);
+            day = parseInt(button.getAttribute("data-d"), 10);
+
+            if (!isNaN(week) && !isNaN(day)) {
+                toggleDay(week, day);
+            }
+        }
+
+        function initialize() {
+            loadProgress();
+            refreshInterface();
+
+            if (document.addEventListener) {
+                document.addEventListener("click", handleClick, false);
+                window.addEventListener("pageshow", function () {
+                    loadProgress();
+                    refreshInterface();
+                }, false);
+            } else if (document.attachEvent) {
+                document.attachEvent("onclick", handleClick);
+            }
+        }
+
+        if (document.readyState === "loading") {
+            if (document.addEventListener) {
+                document.addEventListener("DOMContentLoaded", initialize, false);
+            } else {
+                window.attachEvent("onload", initialize);
+            }
+        } else {
+            initialize();
+        }
+    }());
+    </script>
+
+</body>
+</html>
