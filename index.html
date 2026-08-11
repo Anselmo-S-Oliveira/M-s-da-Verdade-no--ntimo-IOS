@@ -918,11 +918,14 @@
 
         .author-signature .author-name {
             margin: 0;
-            font-family: "Alex Brush", "Brush Script MT", "Segoe Script", cursive;
-            font-size: clamp(2.2rem, 6vw, 3.4rem);
+            font-family: "Alex Brush", cursive;
+            font-size: clamp(2.7rem, 7vw, 4.2rem);
             font-weight: 400;
-            line-height: 1;
+            line-height: 1.05;
+            letter-spacing: 0;
             color: #1a1a1a;
+            transform: rotate(-1deg);
+            transform-origin: center;
         }
 
         .author-signature .author-title {
@@ -934,7 +937,66 @@
             color: #333;
         }
 
+    
+        /* 3.2.5 — leitura maior em celulares */
+        @media (max-width: 600px) {
+            .modal-text {
+                font-size: clamp(18px, 5.15vw, 24px) !important;
+                line-height: 1.24 !important;
+                padding: 12px 11px !important;
+            }
+
+            .modal-text .verse-number {
+                font-size: .82em !important;
+                margin-right: .30em !important;
+            }
+
+            .modal-text .verse-paragraph {
+                margin-bottom: .48em !important;
+            }
+        }
+
+        /* Telas mobile baixas: preserva fonte legível e compacta espaços,
+           em vez de reduzir demais o texto. */
+        @media (max-width: 600px) and (max-height: 700px) {
+            .modal-card {
+                padding-top: 10px !important;
+                padding-bottom: 8px !important;
+                gap: 4px !important;
+            }
+
+            .modal-title {
+                font-size: 1.05rem !important;
+                line-height: 1.05 !important;
+            }
+
+            .modal-subtitle {
+                font-size: .80rem !important;
+                padding-bottom: 5px !important;
+            }
+
+            .modal-text {
+                font-size: clamp(16.5px, 4.6vw, 21px) !important;
+                line-height: 1.17 !important;
+                padding: 8px 9px !important;
+            }
+
+            .modal-text .verse-paragraph {
+                margin-bottom: .32em !important;
+            }
+
+            .modal-actions .btn {
+                min-height: 36px !important;
+                padding: 5px 8px !important;
+            }
+        }
+
     </style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -1743,7 +1805,7 @@
     <script>
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", function () {
-                navigator.serviceWorker.register("./service-worker.js?v=322", { updateViaCache: "none" })
+                navigator.serviceWorker.register("./service-worker.js?v=325", { updateViaCache: "none" })
                     .catch(function (error) {
                         console.warn("Service Worker não registrado:", error);
                     });

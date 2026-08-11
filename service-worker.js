@@ -1,4 +1,4 @@
-const CACHE_NAME = "mes-da-verdade-v3-2-3-assinatura";
+const CACHE_NAME = "mes-da-verdade-v3-2-5-mobile-leitura-maior";
 const STATIC_FILES = [
   "./manifest.json",
   "./apple-touch-icon.png",
