@@ -1,13 +1,14 @@
-VERSÃO 3.2 — ABERTURA DOS VERSÍCULOS CORRIGIDA
+VERSÃO 3.2.1 — VISUAL CORRIGIDO
 
-- Cada um dos 35 cartões possui abertura direta.
-- A abertura não depende mais do registro de listeners após o carregamento.
-- O service worker força atualização do index.html.
-- Repositório: Mes-da-Verdade-no-Intimo
+Esta versão corrige SOMENTE o visual da leitura sobre a versão 3.2.
 
-Substitua TODOS os arquivos no GitHub.
-Depois do deploy, no celular:
-1. Feche o aplicativo/atalho.
-2. Abra o endereço pelo navegador uma vez.
-3. Atualize a página.
-4. Só então abra novamente pelo ícone instalado.
+Correções:
+- versículos ficam um abaixo do outro;
+- texto justificado;
+- sem hifenização;
+- papiro discreto;
+- caixa centralizada no desktop;
+- margens adequadas no celular;
+- fonte responsiva sem transformar a leitura em tela gigante.
+
+Substitua todos os arquivos no GitHub para atualizar também o cache.

@@ -658,6 +658,244 @@
             border-color: rgba(101,67,30,.42);
         }
 
+    
+        /* =========================================================
+           VISUAL DE LEITURA 3.2.1 — PAPIRO ELEGANTE
+           ========================================================= */
+
+        .modal-overlay {
+            padding:
+                max(14px, env(safe-area-inset-top))
+                max(14px, env(safe-area-inset-right))
+                max(14px, env(safe-area-inset-bottom))
+                max(14px, env(safe-area-inset-left)) !important;
+            background: rgba(18, 14, 10, 0.72) !important;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .modal-card {
+            width: min(94vw, 780px) !important;
+            height: auto !important;
+            max-height: calc(100dvh - 28px) !important;
+            margin: auto !important;
+            padding: clamp(18px, 3vw, 30px) !important;
+
+            display: grid !important;
+            grid-template-rows: auto auto minmax(0, 1fr) auto !important;
+            gap: clamp(9px, 1.5vh, 15px) !important;
+
+            border-radius: 22px !important;
+            overflow: hidden !important;
+
+            background:
+                radial-gradient(circle at 18% 15%, rgba(116, 76, 27, .055) 0 1px, transparent 2px),
+                radial-gradient(circle at 80% 74%, rgba(116, 76, 27, .045) 0 1px, transparent 2px),
+                linear-gradient(180deg, #f8edcf 0%, #f1ddb0 100%) !important;
+            background-size: 92px 92px, 125px 125px, auto !important;
+
+            border: 1px solid rgba(122, 83, 35, .28) !important;
+            box-shadow:
+                0 26px 70px rgba(0, 0, 0, .38),
+                inset 0 0 35px rgba(122, 78, 22, .07) !important;
+        }
+
+        .modal-title {
+            margin: 0 !important;
+            padding-right: 52px !important;
+            color: #332417 !important;
+            font-size: clamp(1.35rem, 3.4vw, 2rem) !important;
+            line-height: 1.08 !important;
+        }
+
+        .modal-subtitle {
+            margin: 0 !important;
+            padding: 0 42px 9px 0 !important;
+            border-bottom: 1px solid rgba(119, 80, 32, .24) !important;
+            color: #8a5f2a !important;
+            font-size: clamp(1rem, 2.25vw, 1.3rem) !important;
+            line-height: 1.18 !important;
+        }
+
+        .modal-text {
+            min-height: 0 !important;
+            height: auto !important;
+            max-height: 100% !important;
+            margin: 0 !important;
+            padding: clamp(14px, 2.4vw, 24px) !important;
+            overflow: hidden !important;
+
+            /* CORREÇÃO PRINCIPAL: versículos um abaixo do outro */
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            justify-content: center !important;
+
+            background: rgba(255, 252, 239, .38) !important;
+            border: 1px solid rgba(118, 77, 28, .18) !important;
+            border-left: 4px solid rgba(154, 104, 42, .64) !important;
+            border-radius: 12px !important;
+
+            color: #33251a !important;
+            font-family: Georgia, "Times New Roman", Times, serif !important;
+            font-size: clamp(16px, 2.25vw, 24px) !important;
+            line-height: 1.34 !important;
+            letter-spacing: 0 !important;
+
+            text-align: justify !important;
+            text-justify: inter-word !important;
+            -webkit-hyphens: none !important;
+            hyphens: none !important;
+            word-break: normal !important;
+            overflow-wrap: normal !important;
+        }
+
+        .modal-text .verse-paragraph {
+            display: block !important;
+            width: 100% !important;
+            flex: 0 0 auto !important;
+            margin: 0 0 .72em 0 !important;
+            padding: 0 !important;
+
+            text-align: justify !important;
+            text-justify: inter-word !important;
+            -webkit-hyphens: none !important;
+            hyphens: none !important;
+            word-break: normal !important;
+            overflow-wrap: normal !important;
+        }
+
+        .modal-text .verse-paragraph:last-child {
+            margin-bottom: 0 !important;
+        }
+
+        .modal-text .verse-number {
+            display: inline !important;
+            margin-right: .34em !important;
+            color: #9a672b !important;
+            font-size: .78em !important;
+            font-weight: 800 !important;
+        }
+
+        .modal-actions {
+            display: flex !important;
+            justify-content: flex-end !important;
+            align-items: center !important;
+            gap: 10px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            flex-wrap: nowrap !important;
+        }
+
+        .modal-actions .btn {
+            min-height: 46px !important;
+            padding: 10px 17px !important;
+            border-radius: 9px !important;
+        }
+
+        .modal-close {
+            top: 14px !important;
+            right: 14px !important;
+            width: 42px !important;
+            height: 42px !important;
+            padding: 0 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: #5b4128 !important;
+            background: rgba(255, 250, 232, .56) !important;
+            border-radius: 50% !important;
+        }
+
+        /* Desktop: não deixa o papiro virar uma tela gigante */
+        @media (min-width: 760px) {
+            .modal-card {
+                min-height: min(650px, calc(100dvh - 48px)) !important;
+            }
+
+            .modal-text {
+                font-size: clamp(18px, 1.65vw, 24px) !important;
+                line-height: 1.4 !important;
+            }
+        }
+
+        /* Celular: aproveita o espaço, mas preserva margens */
+        @media (max-width: 600px) {
+            .modal-overlay {
+                padding:
+                    max(8px, env(safe-area-inset-top))
+                    max(8px, env(safe-area-inset-right))
+                    max(8px, env(safe-area-inset-bottom))
+                    max(8px, env(safe-area-inset-left)) !important;
+            }
+
+            .modal-card {
+                width: 100% !important;
+                max-height: calc(100dvh - 16px) !important;
+                padding: 17px 15px 14px !important;
+                border-radius: 18px !important;
+                gap: 8px !important;
+            }
+
+            .modal-title {
+                font-size: 1.35rem !important;
+            }
+
+            .modal-subtitle {
+                font-size: .98rem !important;
+                padding-bottom: 7px !important;
+            }
+
+            .modal-text {
+                padding: 13px 12px !important;
+                font-size: clamp(15px, 4.25vw, 21px) !important;
+                line-height: 1.27 !important;
+            }
+
+            .modal-text .verse-paragraph {
+                margin-bottom: .58em !important;
+            }
+
+            .modal-actions .btn {
+                min-height: 44px !important;
+                padding: 9px 12px !important;
+                font-size: .88rem !important;
+            }
+        }
+
+        @media (max-height: 660px) {
+            .modal-card {
+                gap: 5px !important;
+                padding-top: 12px !important;
+                padding-bottom: 10px !important;
+            }
+
+            .modal-title {
+                font-size: 1.12rem !important;
+            }
+
+            .modal-subtitle {
+                font-size: .84rem !important;
+            }
+
+            .modal-text {
+                padding: 9px 10px !important;
+                font-size: clamp(13px, 3.4vw, 17px) !important;
+                line-height: 1.16 !important;
+            }
+
+            .modal-text .verse-paragraph {
+                margin-bottom: .38em !important;
+            }
+
+            .modal-actions .btn {
+                min-height: 38px !important;
+                padding: 6px 9px !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1127,7 +1365,7 @@
     <script>
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", function () {
-                navigator.serviceWorker.register("./service-worker.js?v=32", { updateViaCache: "none" })
+                navigator.serviceWorker.register("./service-worker.js?v=321", { updateViaCache: "none" })
                     .catch(function (error) {
                         console.warn("Service Worker não registrado:", error);
                     });
