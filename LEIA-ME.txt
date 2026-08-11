@@ -1,8 +1,13 @@
-VERSÃO 3.1 CORRIGIDA
-========================
+VERSÃO 3.2 — ABERTURA DOS VERSÍCULOS CORRIGIDA
 
-1. Envie todos os arquivos desta pasta para a raiz do repositório.
-2. O repositório pode se chamar Mes-da-Verdade-no-Intimo.
-3. Os caminhos são relativos, então não é necessário alterar o HTML por causa do novo nome.
-4. O service-worker.js usa um novo cache para eliminar a versão quebrada.
-5. No iPhone, feche o app/atalho antigo e abra novamente após o GitHub Pages atualizar.
+- Cada um dos 35 cartões possui abertura direta.
+- A abertura não depende mais do registro de listeners após o carregamento.
+- O service worker força atualização do index.html.
+- Repositório: Mes-da-Verdade-no-Intimo
+
+Substitua TODOS os arquivos no GitHub.
+Depois do deploy, no celular:
+1. Feche o aplicativo/atalho.
+2. Abra o endereço pelo navegador uma vez.
+3. Atualize a página.
+4. Só então abra novamente pelo ícone instalado.

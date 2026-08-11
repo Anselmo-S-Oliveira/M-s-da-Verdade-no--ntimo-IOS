@@ -1,7 +1,5 @@
-const CACHE_NAME = "mes-da-verdade-v3-1-papiro-fix-2";
-const APP_FILES = [
-  "./",
-  "./index.html",
+const CACHE_NAME = "mes-da-verdade-v3-2-fix-open";
+const STATIC_FILES = [
   "./manifest.json",
   "./apple-touch-icon.png",
   "./favicon-32.png",
@@ -12,7 +10,7 @@ const APP_FILES = [
 self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function (cache) { return cache.addAll(APP_FILES); })
+      .then(function (cache) { return cache.addAll(STATIC_FILES); })
       .then(function () { return self.skipWaiting(); })
   );
 });
@@ -30,6 +28,14 @@ self.addEventListener("activate", function (event) {
 self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
 
+  if (event.request.mode === "navigate") {
+    event.respondWith(
+      fetch(event.request, { cache: "no-store" })
+        .catch(function () { return caches.match("./index.html"); })
+    );
+    return;
+  }
+
   event.respondWith(
     fetch(event.request)
       .then(function (response) {
@@ -39,10 +45,6 @@ self.addEventListener("fetch", function (event) {
         });
         return response;
       })
-      .catch(function () {
-        return caches.match(event.request).then(function (cached) {
-          return cached || caches.match("./index.html");
-        });
-      })
+      .catch(function () { return caches.match(event.request); })
   );
 });
