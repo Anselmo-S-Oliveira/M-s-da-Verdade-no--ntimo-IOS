@@ -1,14 +1,14 @@
-VERSÃO 3.2.1 — VISUAL CORRIGIDO
+VERSÃO 3.2.2 — VERSÍCULOS CONFERIDOS
 
-Esta versão corrige SOMENTE o visual da leitura sobre a versão 3.2.
+CORREÇÃO PRINCIPAL
+A separação automática por pontuação foi eliminada.
 
-Correções:
-- versículos ficam um abaixo do outro;
-- texto justificado;
-- sem hifenização;
-- papiro discreto;
-- caixa centralizada no desktop;
-- margens adequadas no celular;
-- fonte responsiva sem transformar a leitura em tela gigante.
+Cada versículo das 35 leituras agora possui:
+- número explícito;
+- texto explícito;
+- parágrafo próprio.
 
-Substitua todos os arquivos no GitHub para atualizar também o cache.
+Foi feita validação automática para garantir que a recomposição dos
+parágrafos reproduz exatamente o texto integral fornecido pelo usuário.
+
+Consulte CONFERENCIA-VERSICULOS.txt para a lista completa.

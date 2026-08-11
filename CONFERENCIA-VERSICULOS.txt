@@ -1,0 +1,48 @@
+CONFERÊNCIA GERAL DOS VERSÍCULOS — VERSÃO 3.2.2
+=======================================================
+
+Método:
+- Nenhuma separação por pontuação automática.
+- Cada início de versículo foi mapeado explicitamente.
+- O texto de cada passagem foi recomposto e comparado ao arquivo-fonte.
+
+Passagens conferidas: 35
+Versículos individuais: 77
+Erros de recomposição: 0
+
+Referências:
+- Salmos 51:6-7: versículos 6, 7 — OK
+- Mateus 5:8-9: versículos 8, 9 — OK
+- Provérbios 3:3-4: versículos 3, 4 — OK
+- Romanos 12:1-2: versículos 1, 2 — OK
+- Jó 27:5-6: versículos 5, 6 — OK
+- Efésios 4:24-25: versículos 24, 25 — OK
+- 1 Samuel 2:29-30: versículos 29, 30 — OK
+- Filipenses 3:7-8: versículos 7, 8 — OK
+- Eclesiastes 9:7-8: versículos 7, 8 — OK
+- 1 João 3:16-17: versículos 16, 17 — OK
+- Josué 24:14-15: versículos 14, 15 — OK
+- Atos 24:15-16: versículos 15, 16 — OK
+- 1 Crônicas 29:16-17: versículos 16, 17 — OK
+- Apocalipse 3:4-5: versículos 4, 5 — OK
+- Salmos 24:3-5: versículos 3, 4, 5 — OK
+- Tiago 4:15-17: versículos 15, 16, 17 — OK
+- Zacarias 8:16-17: versículos 16, 17 — OK
+- Apocalipse 4:10-11: versículos 10, 11 — OK
+- Gênesis 22:15-17: versículos 15, 16, 17 — OK
+- 2 Coríntios 12:14-15: versículos 14, 15 — OK
+- Salmos 145:18-19: versículos 18, 19 — OK
+- Hebreus 10:22-23: versículos 22, 23 — OK
+- Salmos 26:1-3: versículos 1, 2, 3 — OK
+- 1 Timóteo 1:5-6: versículos 5, 6 — OK
+- Isaías 1:16-18: versículos 16, 17, 18 — OK
+- Marcos 12:43-44: versículos 43, 44 — OK
+- Ezequiel 22:30-31: versículos 30, 31 — OK
+- 1 Pedro 2:15-16: versículos 15, 16 — OK
+- Rute 1:16-17: versículos 16, 17 — OK
+- Lucas 14:32-33: versículos 32, 33 — OK
+- Salmos 15:1-3: versículos 1, 2, 3 — OK
+- 1 Coríntios 10:31-33: versículos 31, 32, 33 — OK
+- Provérbios 4:23-24: versículos 23, 24 — OK
+- Apocalipse 7:13-14: versículos 13, 14 — OK
+- 2 Reis 20:2-3: versículos 2, 3 — OK
