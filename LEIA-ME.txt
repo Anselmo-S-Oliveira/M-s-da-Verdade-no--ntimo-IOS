@@ -1,10 +1,8 @@
-MÊS DA VERDADE NO ÍNTIMO — VERSÃO 3.0 FINAL
+VERSÃO 3.1 CORRIGIDA
+========================
 
-1. Envie TODOS os arquivos desta pasta para a raiz do repositório GitHub.
-2. Substitua os arquivos existentes quando solicitado.
-3. Confirme em Commit changes.
-4. Aguarde 1 a 3 minutos.
-5. No iPhone, remova o atalho antigo e adicione novamente pelo Safari.
-6. No Android, abra no Chrome e use Instalar aplicativo/Adicionar à tela inicial.
-
-O progresso fica salvo no navegador de cada aparelho.
+1. Envie todos os arquivos desta pasta para a raiz do repositório.
+2. O repositório pode se chamar Mes-da-Verdade-no-Intimo.
+3. Os caminhos são relativos, então não é necessário alterar o HTML por causa do novo nome.
+4. O service-worker.js usa um novo cache para eliminar a versão quebrada.
+5. No iPhone, feche o app/atalho antigo e abra novamente após o GitHub Pages atualizar.

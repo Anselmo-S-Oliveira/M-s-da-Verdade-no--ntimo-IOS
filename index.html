@@ -460,107 +460,8 @@
         }
 
 
-        /* Leitura em tela cheia, sem rolagem, com fonte 25% maior */
-        .modal-overlay {
-            padding: 0 !important;
-            align-items: stretch !important;
-            overflow: hidden !important;
-        }
 
-        .modal-card {
-            width: 100% !important;
-            max-width: none !important;
-            height: 100vh !important;
-            height: 100dvh !important;
-            max-height: none !important;
-            border-radius: 0 !important;
-            padding-top: max(22px, env(safe-area-inset-top)) !important;
-            padding-right: max(20px, env(safe-area-inset-right)) !important;
-            padding-bottom: max(18px, env(safe-area-inset-bottom)) !important;
-            padding-left: max(20px, env(safe-area-inset-left)) !important;
-            overflow: hidden !important;
-            display: grid;
-            grid-template-rows: auto auto minmax(0, 1fr) auto auto;
-            gap: 12px;
-        }
-
-        .modal-title {
-            font-size: 1.375rem !important;
-            line-height: 1.2;
-            padding-right: 48px;
-            margin: 0 !important;
-        }
-
-        .modal-subtitle {
-            font-size: 1.0625rem !important;
-            line-height: 1.3;
-            margin: 0 !important;
-        }
-
-        .modal-text {
-            font-size: 1.1875rem !important;
-            line-height: 1.42 !important;
-            margin: 0 !important;
-            min-height: 0;
-            overflow: hidden !important;
-            display: flex;
-            align-items: center;
-            width: 100%;
-            word-break: normal;
-            overflow-wrap: anywhere;
-        }
-
-        .reading-pagination {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            min-height: 44px;
-        }
-
-        .reading-page-info {
-            flex: 1;
-            text-align: center;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
-        .reading-nav-btn {
-            min-width: 96px;
-            min-height: 44px;
-        }
-
-        .reading-nav-btn:disabled {
-            opacity: 0.38;
-            cursor: default;
-        }
-
-        .modal-actions {
-            margin: 0 !important;
-            flex-wrap: nowrap !important;
-        }
-
-        .modal-actions .btn {
-            min-height: 46px;
-        }
-
-        @media (max-width: 420px), (max-height: 700px) {
-            .modal-card {
-                gap: 8px;
-                padding-left: max(14px, env(safe-area-inset-left)) !important;
-                padding-right: max(14px, env(safe-area-inset-right)) !important;
-            }
-
-            .modal-title { font-size: 1.25rem !important; }
-            .modal-subtitle { font-size: 1rem !important; }
-            .modal-text { font-size: 1.08rem !important; line-height: 1.34 !important; }
-            .reading-nav-btn { min-width: 82px; padding-left: 10px; padding-right: 10px; }
-        }
-
-    
-        /* Leitura em tela única, sem rolagem e com fonte máxima automática */
+        /* Leitura completa em uma única tela, com fonte máxima automática */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -580,128 +481,98 @@
             height: 100dvh;
             max-height: none;
             margin: 0;
-            padding:
-                max(18px, env(safe-area-inset-top))
-                max(18px, env(safe-area-inset-right))
-                max(16px, env(safe-area-inset-bottom))
-                max(18px, env(safe-area-inset-left));
+            padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
             border-radius: 0;
             display: grid;
             grid-template-rows: auto auto minmax(0, 1fr) auto;
-            gap: 10px;
+            gap: 8px;
             overflow: hidden;
         }
 
         .modal-close {
-            top: max(10px, env(safe-area-inset-top));
-            right: max(10px, env(safe-area-inset-right));
+            top: max(7px, env(safe-area-inset-top));
+            right: max(7px, env(safe-area-inset-right));
             width: 44px;
             height: 44px;
             padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 2;
+            z-index: 3;
         }
 
         .modal-title {
-            padding-right: 48px;
             margin: 0;
-            font-size: clamp(1.25rem, 5vw, 2rem);
+            padding-right: 48px;
+            font-size: clamp(1.2rem, 4.8vw, 1.9rem);
             line-height: 1.08;
         }
 
         .modal-subtitle {
             margin: 0;
             padding-right: 38px;
-            font-size: clamp(0.95rem, 3.7vw, 1.35rem);
-            line-height: 1.16;
+            font-size: clamp(.9rem, 3.4vw, 1.25rem);
+            line-height: 1.12;
         }
 
         .modal-text {
             min-height: 0;
             height: 100%;
             margin: 0;
-            padding: clamp(12px, 3vw, 22px);
+            padding: clamp(10px, 2.6vw, 20px);
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            line-height: 1.22;
+            font-size: 32px;
+            line-height: 1.18;
             text-align: left;
-            overflow-wrap: anywhere;
+            overflow-wrap: break-word;
             word-break: normal;
             hyphens: auto;
         }
 
-        .modal-text.fit-small {
-            line-height: 1.14;
-        }
+        .modal-text.fit-compact { line-height: 1.10; }
 
         .modal-actions {
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: flex-end;
-            gap: 10px;
             flex-wrap: nowrap;
+            gap: 8px;
         }
 
         .modal-actions .btn {
-            min-height: 44px;
-            padding: 9px 14px;
+            min-height: 42px;
+            padding: 8px 12px;
             white-space: nowrap;
         }
 
-        @media (max-width: 420px) {
-            .modal-card {
-                gap: 7px;
-            }
-
-            .modal-title {
-                font-size: 1.35rem;
-            }
-
-            .modal-subtitle {
-                font-size: 1rem;
-            }
-
-            .modal-actions .btn {
-                font-size: 0.83rem;
-                padding: 8px 11px;
-            }
+        .copyright-note {
+            padding: 12px 16px;
+            background: #111;
+            color: #aaa;
+            font-size: .68rem;
+            line-height: 1.35;
+            text-align: center;
         }
 
-        @media (max-height: 650px) {
-            .modal-card {
-                gap: 5px;
-            }
-
-            .modal-title {
-                font-size: 1.18rem;
-            }
-
-            .modal-subtitle {
-                font-size: 0.9rem;
-            }
-
-            .modal-actions .btn {
-                min-height: 40px;
-                padding-top: 6px;
-                padding-bottom: 6px;
-            }
+        @media (max-width: 420px), (max-height: 680px) {
+            .modal-card { gap: 5px; }
+            .modal-title { font-size: 1.18rem; }
+            .modal-subtitle { font-size: .88rem; }
+            .modal-actions .btn { min-height: 38px; padding: 6px 9px; font-size: .78rem; }
         }
 
     
         /* =========================================================
-           LEITURA EM ESTILO PAPIRO
+           LEITURA — FOLHA DE PAPIRO
            ========================================================= */
-
         .modal-overlay {
             background:
-                radial-gradient(circle at 50% 18%, rgba(90, 57, 22, 0.18), rgba(0,0,0,0.74)),
-                rgba(0,0,0,0.66);
+                radial-gradient(circle at 50% 16%, rgba(92,58,22,.18), rgba(0,0,0,.76)),
+                rgba(0,0,0,.66);
             -webkit-backdrop-filter: blur(3px);
             backdrop-filter: blur(3px);
         }
@@ -709,37 +580,17 @@
         .modal-card {
             position: relative;
             background:
-                radial-gradient(circle at 12% 15%, rgba(108,72,30,0.09) 0 1px, transparent 2px),
-                radial-gradient(circle at 82% 22%, rgba(108,72,30,0.07) 0 1px, transparent 2px),
-                radial-gradient(circle at 31% 79%, rgba(108,72,30,0.06) 0 1px, transparent 2px),
+                radial-gradient(circle at 12% 15%, rgba(108,72,30,.09) 0 1px, transparent 2px),
+                radial-gradient(circle at 82% 22%, rgba(108,72,30,.07) 0 1px, transparent 2px),
+                radial-gradient(circle at 31% 79%, rgba(108,72,30,.06) 0 1px, transparent 2px),
                 linear-gradient(180deg, #f5e8bf 0%, #ecd49c 48%, #e2c27e 100%);
             background-size: 72px 72px, 96px 96px, 125px 125px, auto;
-            border: 1px solid rgba(102, 66, 25, 0.52);
+            border: 1px solid rgba(102,66,25,.52);
             box-shadow:
-                0 28px 70px rgba(0,0,0,0.36),
-                inset 0 0 55px rgba(104,65,20,0.15);
+                0 28px 70px rgba(0,0,0,.36),
+                inset 0 0 55px rgba(104,65,20,.15);
             color: #3c2915;
         }
-
-        .modal-card::before,
-        .modal-card::after {
-            content: "";
-            position: absolute;
-            left: 2%;
-            right: 2%;
-            height: 10px;
-            pointer-events: none;
-            opacity: .5;
-            background: radial-gradient(
-                ellipse at center,
-                rgba(87,53,18,.38),
-                transparent 72%
-            );
-            filter: blur(2px);
-        }
-
-        .modal-card::before { top: 1px; }
-        .modal-card::after { bottom: 1px; }
 
         .modal-title {
             color: #382611;
@@ -753,12 +604,10 @@
         }
 
         .modal-text {
-            background: rgba(255, 250, 229, 0.18);
+            background: rgba(255,250,229,.16);
             border: 1px solid rgba(105,68,25,.20);
             border-left: 4px solid rgba(126,80,25,.56);
-            border-radius: 7px;
             color: #3c2915;
-
             font-family: Georgia, "Times New Roman", Times, serif;
             letter-spacing: .006em;
 
@@ -768,13 +617,13 @@
             -webkit-hyphens: none !important;
             -ms-hyphens: none !important;
             hyphens: none !important;
-
             word-break: normal !important;
             overflow-wrap: normal !important;
         }
 
-        .modal-text .verse-paragraph {
-            margin: 0 0 .68em 0;
+        .verse-paragraph {
+            display: block;
+            margin: 0 0 .66em 0;
             padding: 0;
             text-align: justify;
             text-justify: inter-word;
@@ -784,27 +633,27 @@
             overflow-wrap: normal !important;
         }
 
-        .modal-text .verse-paragraph:last-child {
+        .verse-paragraph:last-child {
             margin-bottom: 0;
         }
 
-        .modal-text .verse-number {
+        .verse-number {
             display: inline;
             margin-right: .30em;
-            font-weight: 800;
             color: #8a5b25;
             font-size: .82em;
+            font-weight: 800;
             vertical-align: .06em;
         }
 
         .modal-close {
             color: #5b3b18;
-            background: rgba(255,248,225,.28);
+            background: rgba(255,248,225,.30);
             border-radius: 50%;
         }
 
         .modal-actions .btn-outline {
-            background: rgba(255,249,228,.34);
+            background: rgba(255,249,228,.36);
             color: #65431e;
             border-color: rgba(101,67,30,.42);
         }
@@ -913,10 +762,13 @@
         </div>
     </div>
 
+
+    <div class="copyright-note">Citações bíblicas: A Bíblia Sagrada — Almeida Corrigida Fiel (ACF), © Sociedade Bíblica Trinitariana do Brasil / Trinitarian Bible Society.</div>
+
     <!-- MODAL -->
     <div class="modal-overlay" id="day-modal">
         <div class="modal-card" id="modal-card-box">
-            <button type="button" class="modal-close" id="modal-close-btn">×</button>
+            <button type="button" class="modal-close" id="modal-close-btn" aria-label="Fechar leitura">×</button>
             <div class="modal-title" id="modal-day-title">Domingo 02/08</div>
             <div class="modal-subtitle" id="modal-day-ref">Salmos 51:6-7</div>
             <div class="modal-text" id="modal-day-verse">Carregando texto bíblico...</div>
@@ -936,54 +788,51 @@
             var completedDays = {};
             var currentWeek = 1;
             var currentDay = 0;
-            var readingPages = [];
-            var currentReadingPage = 0;
-
             var scheduleData = {
                 1: [
-                    { day: "Domingo 02/08", ref: "Salmos 51:6-7", theme: "Sinceridade e pureza diante de Deus.", text: "Eis que amas a verdade no íntimo, e no oculto me fazes conhecer a sabedoria. Purifica-me com hissopo, e ficarei puro; lava-me, e ficarei mais alvo do que a neve." },
-                    { day: "Segunda 03/08", ref: "Mateus 5:8-9", theme: "Os limpos de coração.", text: "Bem-aventurados os limpos de coração, porque eles verão a Deus; bem-aventurados os pacificadores, porque serão chamados filhos de Deus." },
-                    { day: "Terça 04/08", ref: "Provérbios 3:3-4", theme: "Fidelidade e benignidade.", text: "Não se apartem de ti a benignidade e a fidelidade; ata-as ao teu pescoço; escreve-as na tábua do teu coração. E acharás graça e boa compreensão diante de Deus e dos homens." },
-                    { day: "Quarta 05/08", ref: "Romanos 12:1-2", theme: "Culto racional e transformação.", text: "Rogo-vos, pois, irmãos, pelas misericórdias de Deus, que apresenteis os vossos corpos por sacrifício vivo, santo e agradável a Deus, que é o vosso culto racional. E não vos conformeis com este mundo, mas transformai-vos pela renovação da vossa mente..." },
-                    { day: "Quinta 06/08", ref: "Jó 27:5-6", theme: "Integridade inegociável.", text: "Longe de mim que eu vos dê razão; até que eu morra, nunca apartarei de mim a minha integridade. A minha justiça retens e não a largarei; o meu coração não reprova nenhum dos meus dias." },
-                    { day: "Sexta 07/08", ref: "Efésios 4:24-25", theme: "O novo homem em justiça e verdade.", text: "E vos revistais do novo homem, criado segundo Deus, em justiça e retidão procedentes da verdade. Por isso, deixando a mentira, fale cada um a verdade com o seu próximo..." },
-                    { day: "Sábado 08/08", ref: "1 Samuel 2:29-30", theme: "Honrando a Deus com retidão.", text: "Por que calqueis aos pés o meu sacrifício e a minha oferta... Honrarei aos que me honram, porém os que me desprezam serão desestimados." }
+                    { day: "Domingo 02/08", ref: "Salmos 51:6-7", theme: "Sinceridade e pureza diante de Deus.", text: "Eis que amas a verdade no íntimo, e no oculto me fazes conhecer a sabedoria. Purifica-me com hissopo, e ficarei puro; lava-me, e ficarei mais branco do que a neve." },
+                    { day: "Segunda 03/08", ref: "Mateus 5:8-9", theme: "Os limpos de coração.", text: "Bem-aventurados os limpos de coração, porque eles verão a Deus; Bem-aventurados os pacificadores, porque eles serão chamados filhos de Deus." },
+                    { day: "Terça 04/08", ref: "Provérbios 3:3-4", theme: "Fidelidade e benignidade.", text: "Não te abandonem a benignidade e a fidelidade; ata-as ao teu pescoço, escreve-as na tábua do teu coração. E acharás graça e bom entendimento aos olhos de Deus e do homem." },
+                    { day: "Quarta 05/08", ref: "Romanos 12:1-2", theme: "Culto racional e transformação.", text: "Rogo-vos, pois, irmãos, pela compaixão de Deus, que apresenteis os vossos corpos em sacrifício vivo, santo e agradável a Deus, que é o vosso culto racional. E não sede conformados com este mundo, mas sede transformados pela renovação do vosso entendimento, para que experimenteis qual seja a boa, agradável, e perfeita vontade de Deus." },
+                    { day: "Quinta 06/08", ref: "Jó 27:5-6", theme: "Integridade inegociável.", text: "Longe de mim que eu vos justifique; até que eu expire, não apartarei de mim a minha integridade. A minha justiça me apegarei, e não a largarei; o meu coração não me reprovará de nenhum dos meus dias." },
+                    { day: "Sexta 07/08", ref: "Efésios 4:24-25", theme: "O novo homem em justiça e verdade.", text: "E vos revistais do novo homem, que segundo Deus é criado em verdadeira justiça e santidade. Por isso deixai a mentira, e falai a verdade cada um com o seu próximo; porque somos membros uns dos outros." },
+                    { day: "Sábado 08/08", ref: "1 Samuel 2:29-30", theme: "Honrando a Deus com retidão.", text: "Por que pisastes aos pés os meus sacrifícios e as minhas ofertas, que prescrevi na minha morada, e honras a teus filhos mais do que a mim, para vos engordardes do principal de todas as ofertas do meu povo de Israel? Portanto, diz o SENHOR Deus de Israel: Na verdade tinha falado eu que a tua casa e a casa de teu pai andariam diante de mim perpetuamente; mas agora diz o SENHOR: Longe de mim tal coisa, porque aos que me honram honrarei, porém os que me desprezam serão envilecidos." }
                 ],
                 2: [
-                    { day: "Domingo 09/08", ref: "Filipenses 3:7-8", theme: "Tudo considerado perda por Cristo.", text: "Mas o que para mim era lucro, isto considerei perda por causa de Cristo. Sim, deveras considero tudo como perda, por causa da sublimidade do conhecimento de Cristo Jesus, meu Senhor..." },
-                    { day: "Segunda 10/08", ref: "Eclesiastes 9:7-8", theme: "Alegria e vestes brancas.", text: "Vai, pois, come com alegria o teu pão e bebe o teu vinho com coração contente, pois Deus já se agrada das tuas obras. Em todo tempo sejam alvas as tuas vestes, e nunca falte o óleo sobre a tua cabeça." },
-                    { day: "Terça 11/08", ref: "1 João 3:16-17", theme: "Amor em obras e em verdade.", text: "Nisto conhecemos o amor: que Cristo deu a sua vida por nós; e devemos dar a vida pelos irmãos. Ora, quem tiver bens do mundo, e vir a seu irmão abastado de necessidade, e lhe fechar o seu coração, como habita nele o amor de Deus?" },
-                    { day: "Quarta 12/08", ref: "Josué 24:14-15", theme: "Servir ao Senhor com sinceridade.", text: "Agora, pois, temei ao Senhor, e servi-o com sinceridade e com verdade; deitai fora os deuses a quem serviram vossos pais... porém eu e a minha casa serviremos ao Senhor." },
-                    { day: "Quinta 13/08", ref: "Atos 24:15-16", theme: "Consciência pura diante de Deus.", text: "Tendo esperança em Deus, como estes mesmos também esperam, de que há de haver ressurreição dos mortos, tanto dos justos como dos injustos. Por isso, também me esforço por ter sempre consciência pura diante de Deus e dos homens." },
-                    { day: "Sexta 14/08", ref: "1 Crônicas 29:16-17", theme: "Deus prova os corações.", text: "Senhor, Deus de nossos pais... Bem sei, meu Deus, que tu provas os corações e que te agradas da sinceridade. Eu, na sinceridade de meu coração, voluntariamente dei todas estas coisas..." },
-                    { day: "Sábado 15/08", ref: "Apocalipse 3:4-5", theme: "Andar de branco com o Senhor.", text: "Contudo, tens em Sardes algumas pessoas que não contaminaram suas vestes e comigo andarão de branco, porquanto são dignas. O vencedor assim será vestido de vestes brancas..." }
+                    { day: "Domingo 09/08", ref: "Filipenses 3:7-8", theme: "Tudo considerado perda por Cristo.", text: "Mas o que para mim era ganho, reputei-o perda por Cristo. E, na verdade, tenho também por perda todas as coisas, pela excelência do conhecimento de Cristo Jesus, meu Senhor; pelo qual sofri a perda de todas estas coisas, e as considero como escória, para que possa ganhar a Cristo." },
+                    { day: "Segunda 10/08", ref: "Eclesiastes 9:7-8", theme: "Alegria e vestes brancas.", text: "Vai, pois, come com alegria o teu pão e bebe com coração contente o teu vinho, pois já Deus se agrada das tuas obras. Em todo o tempo sejam alvas as tuas vestes, e nunca falte o óleo sobre a tua cabeça." },
+                    { day: "Terça 11/08", ref: "1 João 3:16-17", theme: "Amor em obras e em verdade.", text: "Conhecemos o amor nisto: que ele deu a sua vida por nós, e nós devemos dar a vida pelos irmãos. Quem, pois, tiver bens do mundo, e, vendo o seu irmão necessitado, lhe cerrar as suas entranhas, como estará nele o amor de Deus?" },
+                    { day: "Quarta 12/08", ref: "Josué 24:14-15", theme: "Servir ao Senhor com sinceridade.", text: "Agora, pois, temei ao SENHOR, e servi-o com sinceridade e com verdade; deitai de fora os deuses aos quais serviram vossos pais dalém do rio e no Egito, e servi ao SENHOR. Porém, se vos parece mal aos vossos olhos servir ao SENHOR, escolhei hoje a quem sirvais; se aos deuses a quem serviram vossos pais, que estavam dalém do rio, ou aos deuses dos amorreus, em cuja terra habitais; porém eu e a minha casa serviremos ao SENHOR." },
+                    { day: "Quinta 13/08", ref: "Atos 24:15-16", theme: "Consciência pura diante de Deus.", text: "Tendo esperança em Deus, como estes mesmos também esperam, de que há de haver ressurreição de mortos, tanto dos justos como dos injustos. E por isso procuro sempre ter uma consciência sem ofensa tanto para com Deus como para com os homens." },
+                    { day: "Sexta 14/08", ref: "1 Crônicas 29:16-17", theme: "Deus prova os corações.", text: "SENHOR nosso Deus, toda esta abundância, que preparamos, para te edificar uma casa ao teu santo nome, vem da tua mão, e é toda tua. Bem sei, meu Deus, que tu provas os corações, e que da retidão te agradas; eu também tenho visto com retidão de coração todas estas coisas, e vi com alegria que agora o teu povo, que se acha aqui, te oferece voluntariamente." },
+                    { day: "Sábado 15/08", ref: "Apocalipse 3:4-5", theme: "Andar de branco com o Senhor.", text: "Mas também tens em Sardes algumas poucas pessoas que não contaminaram as suas vestes, e comigo andarão de branco; porquanto são dignas disso. O que vencer será vestido de vestes brancas, e de maneira nenhuma riscarei o seu nome do livro da vida; e confessarei o seu nome diante de meu Pai e diante dos seus anjos." }
                 ],
                 3: [
-                    { day: "Domingo 16/08", ref: "Salmos 24:3-5", theme: "Quem subirá ao monte do Senhor?", text: "Quem subirá ao monte do Senhor? Ou quem estará no seu lugar santo? Aquele que é limpo de mãos e puro de coração, que não entrega a sua alma à falsidade, nem jura enganosamente." },
-                    { day: "Segunda 17/08", ref: "Tiago 4:15-17", theme: "Retidão e o bem que se deve fazer.", text: "Em lugar disso, devíeis dizer: Se o Senhor der, e se quisermos, viveremos e faremos isto ou aquilo... Aquele, pois, que sabe fazer o bem e o não faz, comete pecado." },
-                    { day: "Terça 18/08", ref: "Zacarias 8:16-17", theme: "A verdade e a justiça nos portões.", text: "Estas são as coisas que vós fareis: Falai a verdade cada um com o seu próximo; executai juízo de verdade e de paz nas vossas portas. E nenhum de vós maquina o mal contra o seu próximo em vosso coração..." },
-                    { day: "Quarta 19/08", ref: "Apocalipse 4:10-11", theme: "Adoração verdadeira ao Criador.", text: "Os vinte e quatro anciãos prostravam-se diante do que estava assentado sobre o trono, e adoravam o que vive para todo o sempre... Digno és, Senhor e Deus nosso, de receber a glória, a honra e o poder..." },
-                    { day: "Quinta 20/08", ref: "Gênesis 22:15-17", theme: "A obediência provada.", text: "Então o anjo do Senhor chamou a Abraão pela segunda vez desde os céus, e disse: Porquanto fizeste isto, e não me negaste o teu filho, o teu único filho, de certo te abençoarei grandemente..." },
-                    { day: "Sexta 21/08", ref: "2 Coríntios 12:14-15", theme: "Sinceridade no ministério e no amor.", text: "Eis que estou pronto para ir ter convosco pela terceira vez e não vos serei pesado, pois não busco os vossos bens, mas a vós mesmos... De boa mente gastarei e me deixarei gastar pelas vossas almas..." },
-                    { day: "Sábado 22/08", ref: "Salmos 145:18-19", theme: "Perto dos que o invocam em verdade.", text: "Perto está o Senhor de todos os que o invocam, de todos os que o invocam em verdade. Ele acode à vontade dos que o temem; ouve o seu clamor, e os salva." }
+                    { day: "Domingo 16/08", ref: "Salmos 24:3-5", theme: "Quem subirá ao monte do Senhor?", text: "Quem subirá ao monte do SENHOR, ou quem estará no seu lugar santo? Aquele que é limpo de mãos e puro de coração, que não entrega a sua alma à vaidade, nem jura enganosamente. Este receberá a bênção do SENHOR e a justiça do Deus da sua salvação." },
+                    { day: "Segunda 17/08", ref: "Tiago 4:15-17", theme: "Retidão e o bem que se deve fazer.", text: "Em lugar do que devíeis dizer: Se o Senhor quiser, e se vivermos, faremos isto ou aquilo. Mas agora vos gloriais em vossas presunções; toda a glória tal como esta é maligna. Aquele, pois, que sabe fazer o bem e não o faz, comete pecado." },
+                    { day: "Terça 18/08", ref: "Zacarias 8:16-17", theme: "A verdade e a justiça nos portões.", text: "Estas são as coisas que deveis fazer: Falai a verdade cada um com o seu próximo; executai juízo de verdade e de paz nas vossas portas. E nenhum de vós pense mal no seu coração contra o seu próximo, nem ame o juramento falso; porque todas estas são coisas que eu odeio, diz o SENHOR." },
+                    { day: "Quarta 19/08", ref: "Apocalipse 4:10-11", theme: "Adoração verdadeira ao Criador.", text: "Os vinte e quatro anciãos prostravam-se diante do que estava assentado sobre o trono, e adoravam o que vive para todo o sempre, e lançavam as suas coroas diante do trono, dizendo: Digno és, Senhor, de receber glória, e honra, e poder; porque tu criaste todas as coisas, e por tua vontade são e foram criadas." },
+                    { day: "Quinta 20/08", ref: "Gênesis 22:15-17", theme: "A obediência provada.", text: "Então o anjo do SENHOR bradou a Abraão pela segunda vez desde os céus, E disse: Por mim mesmo jurei, diz o SENHOR, porquanto fizeste esta ação, e não me negaste o teu filho, o teu único filho, Que deveras te abençoarei, e grandissimamente multiplicarei a tua descendência como as estrelas dos céus, e como a areia que está na praia do mar; e a tua descendência possuirá a porta dos seus inimigos." },
+                    { day: "Sexta 21/08", ref: "2 Coríntios 12:14-15", theme: "Sinceridade no ministério e no amor.", text: "Eis aqui estou pronto para ir ter convosco pela terceira vez, e não vos serei pesado, pois não busco o que é vosso, mas sim a vós; porque não devem os filhos entesourar para os pais, mas os pais para os filhos. Eu de muito boa vontade gastarei, e me deixarei gastar pelas vossas almas, ainda que, amando-vos cada vez mais, seja menos amado." },
+                    { day: "Sábado 22/08", ref: "Salmos 145:18-19", theme: "Perto dos que o invocam em verdade.", text: "Perto está o SENHOR de todos os que o invocam, de todos os que o invocam em verdade. Ele cumprirá o desejo dos que o temem; ouvirá o seu clamor, e os salvará." }
                 ],
                 4: [
-                    { day: "Domingo 23/08", ref: "Hebreus 10:22-23", theme: "Aproximemo-nos com sincero coração.", text: "Aproximemo-nos, com sincero coração, em plena certeza de fé, tendo os corações purificados da má consciência, e o corpo lavado com água pura. Retenhamos firme a confissão da nossa esperança..." },
-                    { day: "Segunda 24/08", ref: "Salmos 26:1-3", theme: "Julga-me, Senhor, segundo a integridade.", text: "Faze-me justiça, Senhor, pois tenho andado na minha integridade; tenho confiado no Senhor sem vacilar. Examina-me, Senhor, e prova-me; sonda-me os rins e o meu coração. Porque a tua benignidade está diante dos meus olhos..." },
-                    { day: "Terça 25/08", ref: "1 Timóteo 1:5-6", theme: "O alvo do mandamento é o amor.", text: "Ora, o fim do mandamento é o amor que procede de um coração puro, e de uma boa consciência, e de uma fé não fingida. Desviando-se alguns destas coisas, se entregaram a conversas vãs..." },
-                    { day: "Quarta 26/08", ref: "Isaías 1:16-18", theme: "Lavai-vos e purificai-vos.", text: "Lavai-vos, purificai-vos, tirai a maldade de vossos atos de diante dos meus olhos; cessai de fazer o mal. Aprendei a fazer o bem; busquei o que é justo... Ainda que os vossos pecados sejam como a escarlata, eles se tornarão brancos como a neve..." },
-                    { day: "Quinta 27/08", ref: "Marcos 12:43-44", theme: "A oferta sincera da viúva pobre.", text: "E, chamando os seus discípulos, disse-lhes: Em verdade vos digo que esta viúva pobre deu mais do que todos os que deitaram na arca... porque todos deram do que lhes sobrava; esta, porém, da sua pobreza deu tudo quanto tinha, todo o seu sustento." },
-                    { day: "Sexta 28/08", ref: "Ezequiel 22:30-31", theme: "Procurando um homem que repare a brecha.", text: "E busquei entre eles um homem que estivesse a brecha e se pudesse pôr na brecha perante mim por esta terra, para que eu não a destruísse; porém a ninguém achei..." },
-                    { day: "Sábado 29/08", ref: "1 Pedro 2:15-16", theme: "Vivendo como servos de Deus.", text: "Porque assim é a vontade de Deus, que, fazendo o bem, tapeis a boca da ignorância dos homens loucos; como livres, e não tendo a liberdade por cobertura da malícia, mas como servos de Deus." }
+                    { day: "Domingo 23/08", ref: "Hebreus 10:22-23", theme: "Aproximemo-nos com sincero coração.", text: "Cheguemo-nos com verdadeiro coração, em plena certeza de fé, tendo os corações purificados da má consciência, e o corpo lavado com água limpa, Retenhamos firmes a confissão da nossa esperança; porque fiel é o que prometeu." },
+                    { day: "Segunda 24/08", ref: "Salmos 26:1-3", theme: "Julga-me, Senhor, segundo a integridade.", text: "Julga-me, SENHOR, pois tenho andado na minha integridade e tenho confiado no SENHOR, sem vacilar. Examina-me, SENHOR, e prova-me; esquadrinha os meus rins e o meu coração. Porque a tua benignidade está diante dos meus olhos; e tenho andado na tua verdade." },
+                    { day: "Terça 25/08", ref: "1 Timóteo 1:5-6", theme: "O alvo do mandamento é o amor.", text: "Ora, o fim do mandamento é o amor de um coração puro, e de uma boa consciência, e de uma fé não fingida. Do que, desviando-se alguns, se entregaram a vãs contendas." },
+                    { day: "Quarta 26/08", ref: "Isaías 1:16-18", theme: "Lavai-vos e purificai-vos.", text: "Lavai-vos, purificai-vos, tirai a maldade de vossos atos de diante dos meus olhos; cessai de fazer mal. Aprendei a fazer bem; procurai o que é justo; ajudai o oprimido; fazei justiça ao órfão; tratai da causa das viúvas. Vinde então, e arguí-me, diz o SENHOR: ainda que os vossos pecados sejam como a escarlata, eles se tornarão brancos como a neve; ainda que sejam vermelhos como o carmesim, se tornarão como a branca lã." },
+                    { day: "Quinta 27/08", ref: "Marcos 12:43-44", theme: "A oferta sincera da viúva pobre.", text: "E, chamando os seus discípulos, disse-lhes: Em verdade vos digo que esta pobre viúva deu mais do que todos os que deitaram na arca do tesouro; Porque todos ali deitaram do que lhes sobrava, mas esta, da sua pobreza, deitou tudo o que tinha, todo o seu sustento." },
+                    { day: "Sexta 28/08", ref: "Ezequiel 22:30-31", theme: "Procurando um homem que repare a brecha.", text: "E busquei dentre eles um homem que levantasse o muro, e se pusesse na brecha perante mim por esta terra, para que eu não a destruísse; mas a ninguém achei. Por isso eu derramei sobre eles a minha indignação; com o fogo do meu furor os consumi; fiz recair o seu caminho sobre as suas cabeças, diz o SENHOR Deus." },
+                    { day: "Sábado 29/08", ref: "1 Pedro 2:15-16", theme: "Vivendo como servos de Deus.", text: "Porque assim é a vontade de Deus, que, fazendo o bem, tapeis a boca à ignorância dos homens insensatos. Como livres, e não tendo a liberdade por cobertura da malícia, mas como servos de Deus." }
                 ],
                 5: [
-                    { day: "Domingo 30/08", ref: "Rute 1:16-17", theme: "Lealdade e compromisso inabalável.", text: "Disse, porém, Rute: Não me instes para que te deixe, e me obrigue a deixar-te; porque aonde quer que fores, irei eu, e onde quer que pousares, ali pousarei; o teu povo será o meu povo, e o teu Deus será o meu Deus." },
-                    { day: "Segunda 31/08", ref: "Lucas 14:32-33", theme: "Renunciando a tudo pelo Mestre.", text: "De outra maneira, estando ainda longe, envia embaixadores, e pede condições de paz. Assim, pois, qualquer de vós que não renuncia a tudo quanto tem, não pode ser meu discípulo." },
-                    { day: "Terça 01/09", ref: "Salmos 15:1-3", theme: "Aquele que habita no tabernáculo.", text: "Senhor, quem habitará no teu tabernáculo? Quem morará no teu santo monte? Aquele que anda em integridade, e pratica a justiça, e fala a verdade no seu coração. Aquele que não difama com a sua língua..." },
-                    { day: "Quarta 02/09", ref: "1 Coríntios 10:31-33", theme: "Tudo para a glória de Deus.", text: "Portanto, quer comais quer bebais, ou façais outra qualquer coisa, fazei tudo para a glória de Deus. Não sede motivo de escândalo nem aos judeus, nem aos gregos, nem à igreja de Deus..." },
-                    { day: "Quinta 03/09", ref: "Provérbios 4:23-24", theme: "Guardando o coração acima de tudo.", text: "Sobre tudo o que se deve guardar, guarda o teu coração, porque dele procedem as fontes da vida. Desvia de ti a falsidade, e afasta de ti a perversidade dos lábios." },
-                    { day: "Sexta 04/09", ref: "Apocalipse 7:13-14", theme: "Os que lavaram suas vestes no Cordeiro.", text: "E um dos anciãos falou, dizendo-me: Estes que estão vestidos de vestes brancas, quem são, e de onde vieram? E eu disse-lhe: Senhor, tu sabes. E ele disse-me: Estes são os que vêm da grande tribulação, e lavaram as suas vestes e as branquearam no sangue do Cordeiro." },
-                    { day: "Sábado 05/09", ref: "2 Reis 20:2-3", theme: "Andando perante Deus com verdade.", text: "Então virou o rosto para a parede, e orou ao Senhor, dizendo: Lembra-te agora, ó Senhor, pido-te, como tenho andado perante ti em verdade, e com coração perfeito, e tenho feito o que era bom aos teus olhos. E Ezequias chorou muito." }
+                    { day: "Domingo 30/08", ref: "Rute 1:16-17", theme: "Lealdade e compromisso inabalável.", text: "Disse, porém, Rute: Não me instes para que te deixe, e deixe de seguir-te; porque aonde quer que tu fores irei eu, e onde quer que pousares à noite ali pousarei eu; o teu povo é o meu povo, o teu Deus é o meu Deus. Onde quer que morreres morrerei eu, e ali serei sepultada; faça-me assim o SENHOR, e outro tanto, se outra coisa que não seja a morte me separar de ti." },
+                    { day: "Segunda 31/08", ref: "Lucas 14:32-33", theme: "Renunciando a tudo pelo Mestre.", text: "Ou, de outra maneira, estando o outro ainda longe, manda embaixadores, e pede condições de paz. Assim, pois, qualquer de vós, que não renuncia a tudo quanto tem, não pode ser meu discípulo." },
+                    { day: "Terça 01/09", ref: "Salmos 15:1-3", theme: "Aquele que habita no tabernáculo.", text: "SENHOR, quem habitará no teu tabernáculo? Quem morará no teu santo monte? Aquele que anda sinceramente, e pratica a justiça, e fala a verdade no seu coração. Aquele que não difama com a sua língua, nem faz mal ao seu próximo, nem aceita nenhuma afronta contra o seu próximo." },
+                    { day: "Quarta 02/09", ref: "1 Coríntios 10:31-33", theme: "Tudo para a glória de Deus.", text: "Portanto, quer comais quer bebais, ou façais outra qualquer coisa, fazei tudo para glória de Deus. Portai-vos de modo que não sejais motivo de escândalo nem para os judeus, nem para os gregos, nem para a igreja de Deus. Como também eu agrado a todos em tudo, não buscando o meu próprio proveito, mas o de muitos, para que assim se possam salvar." },
+                    { day: "Quinta 03/09", ref: "Provérbios 4:23-24", theme: "Guardando o coração acima de tudo.", text: "Sobre tudo o que se deve guardar, guarda o teu coração, porque dele procedem as fontes da vida. Desvia de ti a falsidade da boca, e afasta de ti a perversidade dos lábios." },
+                    { day: "Sexta 04/09", ref: "Apocalipse 7:13-14", theme: "Os que lavaram suas vestes no Cordeiro.", text: "E um dos anciãos me falou, dizendo: Estes que estão vestidos de vestes brancas, quem são, e de onde vieram? E eu disse-lhe: Senhor, tu sabes. E ele disse-me: Estes são os que vieram da grande tribulação, e lavaram as suas vestes e as branquearam no sangue do Cordeiro." },
+                    { day: "Sábado 05/09", ref: "2 Reis 20:2-3", theme: "Andando perante Deus com verdade.", text: "Então virou Ezequias o seu rosto para a parede, e orou ao SENHOR. E disse: Ah, SENHOR! Peço-te, lembra-te agora de que andei diante de ti em verdade, e com coração perfeito, e fiz o que era reto aos teus olhos. E chorou Ezequias muitíssimo." }
                 ]
             };
 
@@ -1074,150 +923,108 @@
             }
 
 
-            function splitReadingIntoPages(text) {
-                var words = text.trim().split(/\s+/);
-                var pages = [];
-                var wordsPerPage = window.innerHeight < 720 ? 42 : (window.innerHeight < 850 ? 55 : 68);
+            function fitModalTextToScreen() {
+                var textBox = document.getElementById("modal-day-verse");
+                if (!textBox || !textBox.clientHeight) return;
+
+                textBox.classList.remove("fit-compact");
+                var minimum = 11;
+                var maximum = Math.min(36, Math.max(22, window.innerWidth * 0.082));
+                var low = minimum;
+                var high = Math.floor(maximum);
+                var best = minimum;
+
+                while (low <= high) {
+                    var middle = Math.floor((low + high) / 2);
+                    textBox.style.fontSize = middle + "px";
+                    if (textBox.scrollHeight <= textBox.clientHeight + 1 && textBox.scrollWidth <= textBox.clientWidth + 1) {
+                        best = middle;
+                        low = middle + 1;
+                    } else {
+                        high = middle - 1;
+                    }
+                }
+
+                textBox.style.fontSize = best + "px";
+                if (best <= 15) textBox.classList.add("fit-compact");
+            }
+
+
+            function getVerseRange(reference) {
+                var match = reference.match(/:(\d+)(?:-(\d+))?/);
+                if (!match) return { first: 1, count: 1 };
+
+                var first = parseInt(match[1], 10);
+                var last = match[2] ? parseInt(match[2], 10) : first;
+
+                if (isNaN(first) || isNaN(last) || last < first) {
+                    return { first: 1, count: 1 };
+                }
+
+                return { first: first, count: (last - first) + 1 };
+            }
+
+            function splitVerseParagraphs(text, reference) {
+                var range = getVerseRange(reference);
+                var clean = text.replace(/\s+/g, " ").trim();
+                var sentences = clean.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [clean];
+                var result = [];
                 var i;
 
-                for (i = 0; i < words.length; i += wordsPerPage) {
-                    pages.push(words.slice(i, i + wordsPerPage).join(" "));
+                for (i = 0; i < sentences.length; i += 1) {
+                    sentences[i] = sentences[i].trim();
                 }
 
-                return pages.length ? pages : [text];
-            }
+                /* Distribui frases entre os versículos sem remover,
+                   resumir ou modificar nenhuma palavra. */
+                var base = Math.floor(sentences.length / range.count);
+                var remainder = sentences.length % range.count;
+                var cursor = 0;
 
-            function renderReadingPage() {
-                var textElement = document.getElementById("modal-day-verse");
-                var infoElement = document.getElementById("reading-page-info");
-                var previousButton = document.getElementById("reading-prev-btn");
-                var nextButton = document.getElementById("reading-next-btn");
+                for (i = 0; i < range.count; i += 1) {
+                    var take = base + (i < remainder ? 1 : 0);
+                    if (take < 1) take = 1;
 
-                textElement.textContent = "“" + readingPages[currentReadingPage] + "”";
-                infoElement.textContent = "Página " + (currentReadingPage + 1) + " de " + readingPages.length;
-                previousButton.disabled = currentReadingPage === 0;
-                nextButton.disabled = currentReadingPage >= readingPages.length - 1;
-            }
+                    var part = sentences.slice(cursor, cursor + take).join(" ").trim();
+                    cursor += take;
 
-            function previousReadingPage() {
-                if (currentReadingPage > 0) {
-                    currentReadingPage -= 1;
-                    renderReadingPage();
-                }
-            }
-
-            function nextReadingPage() {
-                if (currentReadingPage < readingPages.length - 1) {
-                    currentReadingPage += 1;
-                    renderReadingPage();
-                }
-            }
-
-            
-        function getVerseInfo(reference) {
-            var match = reference.match(/:(\d+)(?:-(\d+))?/);
-            if (!match) {
-                return { first: 1, count: 1 };
-            }
-
-            var first = parseInt(match[1], 10);
-            var last = match[2] ? parseInt(match[2], 10) : first;
-
-            if (isNaN(first) || isNaN(last) || last < first) {
-                return { first: 1, count: 1 };
-            }
-
-            return {
-                first: first,
-                count: (last - first) + 1
-            };
-        }
-
-        function splitIntoVerseParagraphs(text, reference) {
-            var info = getVerseInfo(reference);
-            var clean = text.replace(/\s+/g, " ").trim();
-
-            /* O arquivo-fonte fornecido separa os versículos por frases.
-               Mantemos todas as palavras e usamos somente pontuação final
-               para criar os parágrafos. */
-            var sentences = clean.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [clean];
-            var parts = [];
-            var i;
-
-            for (i = 0; i < sentences.length; i += 1) {
-                sentences[i] = sentences[i].trim();
-            }
-
-            if (sentences.length === info.count) {
-                for (i = 0; i < info.count; i += 1) {
-                    parts.push({
-                        number: info.first + i,
-                        text: sentences[i]
+                    result.push({
+                        number: range.first + i,
+                        text: part
                     });
                 }
-                return parts;
-            }
 
-            /* Se uma frase interna usar ponto, distribui as frases sem
-               alterar nenhuma palavra, preservando a ordem original. */
-            var base = Math.floor(sentences.length / info.count);
-            var remainder = sentences.length % info.count;
-            var cursor = 0;
-
-            for (i = 0; i < info.count; i += 1) {
-                var take = base + (i < remainder ? 1 : 0);
-
-                if (take < 1) take = 1;
-
-                var group = sentences.slice(cursor, cursor + take).join(" ").trim();
-
-                if (!group && cursor < sentences.length) {
-                    group = sentences[cursor];
-                    take = 1;
+                if (cursor < sentences.length && result.length) {
+                    result[result.length - 1].text +=
+                        " " + sentences.slice(cursor).join(" ");
                 }
 
-                parts.push({
-                    number: info.first + i,
-                    text: group
-                });
-
-                cursor += take;
+                return result;
             }
 
-            if (cursor < sentences.length && parts.length) {
-                parts[parts.length - 1].text += " " +
-                    sentences.slice(cursor).join(" ");
+            function renderVerseParagraphs(text, reference) {
+                var box = document.getElementById("modal-day-verse");
+                if (!box) return;
+
+                var parts = splitVerseParagraphs(text, reference);
+                box.innerHTML = "";
+
+                var i;
+                for (i = 0; i < parts.length; i += 1) {
+                    var p = document.createElement("p");
+                    p.className = "verse-paragraph";
+
+                    var number = document.createElement("span");
+                    number.className = "verse-number";
+                    number.textContent = parts[i].number;
+
+                    p.appendChild(number);
+                    p.appendChild(document.createTextNode(parts[i].text));
+                    box.appendChild(p);
+                }
             }
 
-            return parts;
-        }
-
-        function renderVerseParagraphs(text, reference) {
-            var container = document.getElementById("modal-day-verse");
-            if (!container) return;
-
-            var parts = splitIntoVerseParagraphs(text, reference);
-            container.innerHTML = "";
-
-            var i;
-            for (i = 0; i < parts.length; i += 1) {
-                var paragraph = document.createElement("p");
-                paragraph.className = "verse-paragraph";
-
-                var number = document.createElement("span");
-                number.className = "verse-number";
-                number.textContent = parts[i].number;
-
-                paragraph.appendChild(number);
-                paragraph.appendChild(
-                    document.createTextNode(parts[i].text)
-                );
-
-                container.appendChild(paragraph);
-            }
-        }
-
-        function openReading(week, day) {
+            function openReading(week, day) {
                 var item = scheduleData[week][day];
                 currentWeek = week;
                 currentDay = day;
@@ -1226,14 +1033,11 @@
                 document.getElementById("modal-day-ref").textContent =
                     item.ref + " — " + item.theme;
                 renderVerseParagraphs(item.text, item.ref);
-                readingPages = splitReadingIntoPages(item.text);
-                currentReadingPage = 0;
-                renderReadingPage();
 
                 updateModalButton();
                 document.getElementById("day-modal").classList.add("open");
-                requestAnimationFrame(fitModalTextToScreen);
                 document.body.classList.add("modal-open");
+                requestAnimationFrame(fitModalTextToScreen);
             }
 
             function closeReading() {
@@ -1254,47 +1058,7 @@
                 refresh();
             }
 
-            
-        function fitModalTextToScreen() {
-            var textBox = document.getElementById("modal-day-verse");
-            if (!textBox) return;
-
-            textBox.classList.remove("fit-small");
-
-            var minSize = 13;
-            var maxSize = Math.min(34, Math.max(22, window.innerWidth * 0.075));
-            var low = minSize;
-            var high = maxSize;
-            var best = minSize;
-            var attempts = 0;
-
-            textBox.style.fontSize = maxSize + "px";
-
-            while (low <= high && attempts < 20) {
-                var middle = Math.floor((low + high) / 2);
-                textBox.style.fontSize = middle + "px";
-
-                var fitsHeight = textBox.scrollHeight <= textBox.clientHeight + 1;
-                var fitsWidth = textBox.scrollWidth <= textBox.clientWidth + 1;
-
-                if (fitsHeight && fitsWidth) {
-                    best = middle;
-                    low = middle + 1;
-                } else {
-                    high = middle - 1;
-                }
-
-                attempts += 1;
-            }
-
-            textBox.style.fontSize = best + "px";
-
-            if (best <= 16) {
-                textBox.classList.add("fit-small");
-            }
-        }
-
-        function initialize() {
+            function initialize() {
                 loadState();
                 refresh();
 
@@ -1315,12 +1079,6 @@
                 document.getElementById("modal-toggle-btn")
                     .addEventListener("click", toggleCurrentDay, false);
 
-                document.getElementById("reading-prev-btn")
-                    .addEventListener("click", previousReadingPage, false);
-
-                document.getElementById("reading-next-btn")
-                    .addEventListener("click", nextReadingPage, false);
-
                 document.getElementById("modal-close-btn")
                     .addEventListener("click", closeReading, false);
 
@@ -1334,19 +1092,17 @@
                         }
                     }, false);
 
-                
-            window.addEventListener("resize", function () {
-                var modal = document.getElementById("day-modal");
-                if (modal && modal.classList.contains("open")) {
-                    requestAnimationFrame(fitModalTextToScreen);
-                }
-            }, false);
 
-            window.addEventListener("orientationchange", function () {
-                setTimeout(fitModalTextToScreen, 250);
-            }, false);
+                window.addEventListener("resize", function () {
+                    var modal = document.getElementById("day-modal");
+                    if (modal && modal.classList.contains("open")) requestAnimationFrame(fitModalTextToScreen);
+                }, false);
 
-            window.addEventListener("pageshow", function () {
+                window.addEventListener("orientationchange", function () {
+                    setTimeout(fitModalTextToScreen, 250);
+                }, false);
+
+                window.addEventListener("pageshow", function () {
                     loadState();
                     refresh();
                 }, false);
