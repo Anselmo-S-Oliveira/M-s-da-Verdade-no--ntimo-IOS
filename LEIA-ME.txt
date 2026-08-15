@@ -1,14 +1,9 @@
-VERSÃO 3.2.2 — VERSÍCULOS CONFERIDOS
+VERSÃO 3.2.6 — CABEÇALHO FIXO
 
-CORREÇÃO PRINCIPAL
-A separação automática por pontuação foi eliminada.
+Alteração:
+- Cabeçalho completo + barra de progresso permanecem visíveis.
+- Apenas semanas e datas rolam.
+- Compatível com desktop, Android e Safari/iOS.
+- Nenhuma alteração nas leituras, progresso, assinatura ou ícones.
 
-Cada versículo das 35 leituras agora possui:
-- número explícito;
-- texto explícito;
-- parágrafo próprio.
-
-Foi feita validação automática para garantir que a recomposição dos
-parágrafos reproduz exatamente o texto integral fornecido pelo usuário.
-
-Consulte CONFERENCIA-VERSICULOS.txt para a lista completa.
+Substitua todos os arquivos no GitHub para atualizar também o cache do PWA.

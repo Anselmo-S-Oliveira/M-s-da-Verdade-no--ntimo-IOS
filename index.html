@@ -991,6 +991,78 @@
             }
         }
 
+    
+        /* =========================================================
+           3.2.6 — CABEÇALHO + PROGRESSO FIXOS
+           ========================================================= */
+
+        /* overflow:hidden no container impediria position:sticky
+           em alguns navegadores, principalmente Safari/iOS. */
+        .container {
+            overflow: visible !important;
+        }
+
+        .sticky-header-wrap {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 5000;
+            width: 100%;
+
+            /* Evita que os cartões apareçam por trás das bordas */
+            background: var(--card-bg);
+            border-radius: 16px 16px 0 0;
+
+            /* Sombra discreta apenas quando o conteúdo passa por baixo */
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.08);
+        }
+
+        .sticky-header-wrap .header {
+            border-radius: 16px 16px 0 0;
+        }
+
+        .sticky-header-wrap .progress-section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* O conteúdo continua rolando normalmente abaixo do bloco fixo */
+        .content-body {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* No iPhone instalado como PWA, respeita a área segura superior. */
+        @supports (padding: env(safe-area-inset-top)) {
+            @media (display-mode: standalone) {
+                .sticky-header-wrap {
+                    top: env(safe-area-inset-top);
+                }
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sticky-header-wrap {
+                border-radius: 12px 12px 0 0;
+            }
+
+            .sticky-header-wrap .header {
+                border-radius: 12px 12px 0 0;
+            }
+
+            /* Compacta um pouco o cabeçalho em mobile para deixar
+               mais espaço útil para as datas. */
+            .sticky-header-wrap .header {
+                padding-top: 18px;
+                padding-bottom: 16px;
+            }
+
+            .sticky-header-wrap .progress-section {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+        }
+
     </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1001,6 +1073,7 @@
 <body>
 
     <div class="container">
+        <div class="sticky-header-wrap">
         <div class="header">
             <h3>Mês da</h3>
             <h1>Verdade no Íntimo</h1>
@@ -1021,6 +1094,7 @@
                 <div class="progress-bar-fill" id="progress-fill"></div>
             </div>
         </div>
+        </div><!-- /.sticky-header-wrap -->
 
         <div class="content-body">
             <!-- 1ª SEMANA -->
@@ -1805,7 +1879,7 @@
     <script>
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", function () {
-                navigator.serviceWorker.register("./service-worker.js?v=325", { updateViaCache: "none" })
+                navigator.serviceWorker.register("./service-worker.js?v=326", { updateViaCache: "none" })
                     .catch(function (error) {
                         console.warn("Service Worker não registrado:", error);
                     });
