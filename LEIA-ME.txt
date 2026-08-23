@@ -1,9 +1,34 @@
-VERSÃO 3.2.6 — CABEÇALHO FIXO
+VERSÃO 3.2.8 — ÍCONE DEFINITIVO
 
-Alteração:
-- Cabeçalho completo + barra de progresso permanecem visíveis.
-- Apenas semanas e datas rolam.
-- Compatível com desktop, Android e Safari/iOS.
-- Nenhuma alteração nas leituras, progresso, assinatura ou ícones.
+Ícone aprovado:
+- fundo preto;
+- coração vermelho;
+- pomba branca;
+- sem texto.
 
-Substitua todos os arquivos no GitHub para atualizar também o cache do PWA.
+Novos arquivos de ícone:
+- apple-touch-icon-v2.png — 180x180 (iOS)
+- icon-192-v2.png — 192x192 (Android/PWA)
+- icon-512-v2.png — 512x512 (Android/PWA)
+- favicon-32-v2.png — 32x32
+
+Também foram recriados:
+- manifest.json
+- service-worker.js
+
+PUBLICAÇÃO
+Substitua TODOS os arquivos do repositório pelos deste pacote.
+
+DEPOIS DO DEPLOY
+iPhone:
+1. Remova o atalho antigo da Tela de Início.
+2. Abra o site no Safari.
+3. Compartilhar > Adicionar à Tela de Início.
+
+Android:
+1. Remova o app/atalho antigo.
+2. Abra o site no Chrome.
+3. Instalar aplicativo / Adicionar à tela inicial.
+
+Os nomes dos ícones foram alterados para evitar que o sistema reutilize
+o ícone antigo em cache.

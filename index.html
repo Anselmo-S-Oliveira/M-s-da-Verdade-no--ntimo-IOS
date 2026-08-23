@@ -10,13 +10,7 @@
     <meta name="application-name" content="Mês da Verdade">
     <meta name="apple-mobile-web-app-title" content="Mês da Verdade">
     <meta name="mobile-web-app-capable" content="yes">
-
-    <link rel="manifest" href="./manifest.json">
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
-
-    <title>Mês da Verdade no Íntimo</title>
+<title>Mês da Verdade no Íntimo</title>
     <style>
         :root {
             --primary: #1a1a1a;
@@ -1069,6 +1063,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
 
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon-v2.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32-v2.png">
 </head>
 <body>
 
@@ -1876,15 +1873,17 @@
     </script>
 
 
+    
+
+
     <script>
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", function () {
-                navigator.serviceWorker.register("./service-worker.js?v=326", { updateViaCache: "none" })
-                    .catch(function (error) {
-                        console.warn("Service Worker não registrado:", error);
-                    });
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+            navigator.serviceWorker.register("./service-worker.js?v=328", {
+                updateViaCache: "none"
             });
-        }
+        });
+    }
     </script>
 
 </body>
